@@ -1,92 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>Variables and Constants</title>
-    <url>/2019/10/30/variables-and-constants/</url>
-    <content><![CDATA[<h1 id="變數與常數"><a href="#變數與常數" class="headerlink" title="變數與常數"></a>變數與常數</h1><h2 id="寫在前面："><a href="#寫在前面：" class="headerlink" title="寫在前面："></a>寫在前面：</h2><p>如果你和我一樣是新手，只是想了解一下 Ruby 寫起來是什麼感覺，<br>我會推薦 <a href="https://repl.it/" target="_blank" rel="noopener">Repl</a> 這個網站。<br>算是線上練習的一個好幫手。</p>
-<p>如果你是想實作或是練習 Rails 的專案：</p>
-<ul>
-<li>如果你是Windows 的使用者，那你可以：<br>  1.買一台二手Mac。<br>  2.買一台Mac。<br>  3.買很多台Mac。<del>(I’m not kidding)</del></li>
-</ul>
-<p>謀啦，網路上有很多教學文：找一天比較有空的時候，爬個文，兩三下就搞定！<br><a href="https://blogs.msdn.microsoft.com/microsoft_student_partners_in_taiwan/2017/10/03/wsltune/" target="_blank" rel="noopener">Microsoft - WSL基本安裝</a></p>
-<ul>
-<li>如果你已經在使用Mac：</li>
-</ul>
-<p>那你可以參考下列文章，或是網路上滿滿的教學文，完成環境建置：<br><a href="https://railsbook.tw/chapters/02-environment-setup.html" target="_blank" rel="noopener">為你自己學Ruby on Rails:環境建置篇</a></p>
-<hr>
-<p>咦？看倌您還在啊？正常人在看完上面那段不負責任的環境建置之後，<br>應該都會按下Cmd(Ctrl)+ W 或是 Cmd(Ctrl)+ Q 才是吧？</p>
-<p>好吧…<del>(沒有中招嗎？so sad…)</del></p>
-<p>根據某位授課講師的說法，要掌握一門程式語言要從下列幾東西開始：</p>
-<ul>
-<li>變數</li>
-<li>三種基本型別: String, Integer and Boolean</li>
-<li>兩種集合型別: Array and Hash</li>
-<li>函式</li>
-<li>分支條件與迴圈</li>
-<li>變數作用域</li>
-</ul>
-<p>所以，就先從變數(Variables)和常數(Constants)開始吧！</p>
-<hr>
-<h1 id="變數-Variables"><a href="#變數-Variables" class="headerlink" title="變數(Variables)"></a>變數(Variables)</h1><p>Ruby 中的變數共有以下四種：<br>type    | sample |identifier |<br>——  | —— | ——– |<br>區域變數 | name   | 非大寫字母開頭 |<br>全域區域 | $name  | $開頭 |<br>實體變數 | @name  | @開頭 |<br>類別變數 | @@name | @@開頭 |</p>
-<blockquote>
-<p>只有  全域變數 和 實體變數  有預設值 nil。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">puts <span class="variable">$name</span></span><br><span class="line">=&gt; nil</span><br><span class="line">puts @name</span><br><span class="line">=&gt; nil</span><br><span class="line">puts name</span><br><span class="line">=&gt; (undefined <span class="built_in">local</span> variable or method `name` <span class="keyword">for</span> main:Object)</span><br><span class="line">puts @@name</span><br><span class="line">=&gt; (uninitialized class variable @@name <span class="keyword">in</span> Object)</span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h1 id="常數-Constants"><a href="#常數-Constants" class="headerlink" title="常數(Constants)"></a>常數(Constants)</h1><p>Ruby對常數的要求只有一點：</p>
-<blockquote>
-<p>常數的命名開頭要是英文字母大寫。</p>
-</blockquote>
-<p>下面的例子裡，就有兩個常數 Foo 和 Bar。<br>沒錯，常見的類別(class)名稱，必須要是常數才行喔！</p>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line">    Bar</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<h2 id="虛擬變數-pseudo-variable"><a href="#虛擬變數-pseudo-variable" class="headerlink" title="虛擬變數(pseudo_variable)"></a>虛擬變數(pseudo_variable)</h2><p>常用的虛擬變數有</p>
-<ul>
-<li>self : 呼叫方法的物件(The receiver object of the current method.)</li>
-<li>nil :  代表還沒有被設定值 (Undefined)</li>
-<li>true : 代表 True</li>
-<li>false : 代表 False</li>
-</ul>
-<blockquote>
-<p>虛擬變數算是比較特別的一群：<br>他們通常被當作像區域變數那樣來使用，但是無法被assign任何值。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">self = <span class="string">'hahaha'</span></span><br><span class="line">=&gt; SyntaxError (Can<span class="string">'t change the value of self)</span></span><br><span class="line"><span class="string">nil = 18</span></span><br><span class="line"><span class="string">=&gt; SyntaxError (Can'</span>t assign to nil)</span><br><span class="line"><span class="literal">true</span> = <span class="literal">false</span></span><br><span class="line">=&gt; SyntaxError (Can<span class="string">'t assign to true)</span></span><br></pre></td></tr></table></figure>
-
-
-<hr>
-<p>同場加映：</p>
-<p> 在練習Ruby的時候，通常我們會習慣用 p 和 puts 把結果印出來，像是下面這樣：</p>
-<ul>
-<li><p>印出字串</p>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"> p <span class="string">'this is a string'</span></span><br><span class="line"><span class="string">"this is a string"</span></span><br><span class="line"> =&gt; <span class="string">"this is a string"</span></span><br><span class="line"> </span><br><span class="line"> puts <span class="string">'this is a string'</span></span><br><span class="line">this is a string</span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure>
-<ul>
-<li>印出整數<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"> p <span class="number">123</span></span><br><span class="line"><span class="number">123</span></span><br><span class="line"> =&gt; <span class="number">123</span></span><br><span class="line"> </span><br><span class="line"> puts <span class="number">123</span></span><br><span class="line"><span class="number">123</span></span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>印出Boolean</p>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"> p <span class="literal">true</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"> =&gt; true</span><br><span class="line"></span><br><span class="line">puts <span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>試著印出 nil </p>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line">p <span class="literal">nil</span></span><br><span class="line"><span class="literal">nil</span></span><br><span class="line"> =&gt; nil</span><br><span class="line">puts <span class="literal">nil</span></span><br><span class="line">    <span class="comment">#是真的沒有東西，不是沒有打字喔！</span></span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>p 和 puts 都能幫我們印出結果，但是印出的內容不太一樣喔！<br>這個符號 <strong>=&gt;</strong>，在 Ruby是叫做 “回傳值” 的概念，暫時先有印象就好。<br>目前只需要知道：</p>
-<ul>
-<li>p 可以幫我們印出物件(object)本身，並回傳物件本身的值(value)</li>
-<li>puts 則是會把物件轉換成字串印出來。<pre><code>就算是nil 也會被轉成空的字串“”，所以才會印出空白喔。</code></pre></li>
-</ul>
-<p>其實還有一個print，不過因為對他沒有愛，就這樣吧！</p>
-<p>如果想進一步了解的話，可以參考下面連結：</p>
-<p><a href="https://railsbook.tw/chapters/05-ruby-basic-1.html" target="_blank" rel="noopener">為你自己學 Ruby on Rails： 變數、常數、流程控制、迴圈</a><br><a href="https://www.garethrees.co.uk/2013/05/04/p-vs-puts-vs-print-in-ruby/" target="_blank" rel="noopener">Ruby p vs puts vs print</a><br><a href="https://www.rubyguides.com/2018/10/puts-vs-print/" target="_blank" rel="noopener">Understanding The Differences Between Puts, Print &amp; P</a></p>
-<p>鐵人賽第一天，就先這樣囉！</p>
-]]></content>
-      <tags>
-        <tag>Ruby</tag>
-      </tags>
-  </entry>
+<search> 
+  
+  
+    
+    <entry>
+      <title>123</title>
+      <link href="/2019/10/30/123/"/>
+      <url>/2019/10/30/123/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Variables and Constants</title>
+      <link href="/2019/10/30/variables-and-constants/"/>
+      <url>/2019/10/30/variables-and-constants/</url>
+      
+        <content type="html"><![CDATA[<h1 id="變數與常數"><a href="#變數與常數" class="headerlink" title="變數與常數"></a>變數與常數</h1><h2 id="寫在前面："><a href="#寫在前面：" class="headerlink" title="寫在前面："></a>寫在前面：</h2><p>如果你和我一樣是新手，只是想了解一下 Ruby 寫起來是什麼感覺，<br>我會推薦 <a href="https://repl.it/" target="_blank" rel="noopener">Repl</a> 這個網站。<br>算是線上練習的一個好幫手。</p><p>如果你是想實作或是練習 Rails 的專案：</p><ul><li>如果你是Windows 的使用者，那你可以：<br>  1.買一台二手Mac。<br>  2.買一台Mac。<br>  3.買很多台Mac。<del>(I’m not kidding)</del></li></ul><p>謀啦，網路上有很多教學文：找一天比較有空的時候，爬個文，兩三下就搞定！<br><a href="https://blogs.msdn.microsoft.com/microsoft_student_partners_in_taiwan/2017/10/03/wsltune/" target="_blank" rel="noopener">Microsoft - WSL基本安裝</a></p><ul><li>如果你已經在使用Mac：</li></ul><p>那你可以參考下列文章，或是網路上滿滿的教學文，完成環境建置：<br><a href="https://railsbook.tw/chapters/02-environment-setup.html" target="_blank" rel="noopener">為你自己學Ruby on Rails:環境建置篇</a></p><hr><p>咦？看倌您還在啊？正常人在看完上面那段不負責任的環境建置之後，<br>應該都會按下Cmd(Ctrl)+ W 或是 Cmd(Ctrl)+ Q 才是吧？</p><p>好吧…<del>(沒有中招嗎？so sad…)</del></p><p>根據某位授課講師的說法，要掌握一門程式語言要從下列幾東西開始：</p><ul><li>變數</li><li>三種基本型別: String, Integer and Boolean</li><li>兩種集合型別: Array and Hash</li><li>函式</li><li>分支條件與迴圈</li><li>變數作用域</li></ul><p>所以，就先從變數(Variables)和常數(Constants)開始吧！</p><hr><h1 id="變數-Variables"><a href="#變數-Variables" class="headerlink" title="變數(Variables)"></a>變數(Variables)</h1><p>Ruby 中的變數共有以下四種：<br>type    | sample |identifier |<br>——  | —— | ——– |<br>區域變數 | name   | 非大寫字母開頭 |<br>全域區域 | $name  | $開頭 |<br>實體變數 | @name  | @開頭 |<br>類別變數 | @@name | @@開頭 |</p><blockquote><p>只有  全域變數 和 實體變數  有預設值 nil。</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">puts <span class="variable">$name</span></span><br><span class="line">=&gt; nil</span><br><span class="line">puts @name</span><br><span class="line">=&gt; nil</span><br><span class="line">puts name</span><br><span class="line">=&gt; (undefined <span class="built_in">local</span> variable or method `name` <span class="keyword">for</span> main:Object)</span><br><span class="line">puts @@name</span><br><span class="line">=&gt; (uninitialized class variable @@name <span class="keyword">in</span> Object)</span><br></pre></td></tr></table></figure><hr><h1 id="常數-Constants"><a href="#常數-Constants" class="headerlink" title="常數(Constants)"></a>常數(Constants)</h1><p>Ruby對常數的要求只有一點：</p><blockquote><p>常數的命名開頭要是英文字母大寫。</p></blockquote><p>下面的例子裡，就有兩個常數 Foo 和 Bar。<br>沒錯，常見的類別(class)名稱，必須要是常數才行喔！</p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line">    Bar</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure><hr><h2 id="虛擬變數-pseudo-variable"><a href="#虛擬變數-pseudo-variable" class="headerlink" title="虛擬變數(pseudo_variable)"></a>虛擬變數(pseudo_variable)</h2><p>常用的虛擬變數有</p><ul><li>self : 呼叫方法的物件(The receiver object of the current method.)</li><li>nil :  代表還沒有被設定值 (Undefined)</li><li>true : 代表 True</li><li>false : 代表 False</li></ul><blockquote><p>虛擬變數算是比較特別的一群：<br>他們通常被當作像區域變數那樣來使用，但是無法被assign任何值。</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">self = <span class="string">'hahaha'</span></span><br><span class="line">=&gt; SyntaxError (Can<span class="string">'t change the value of self)</span></span><br><span class="line"><span class="string">nil = 18</span></span><br><span class="line"><span class="string">=&gt; SyntaxError (Can'</span>t assign to nil)</span><br><span class="line"><span class="literal">true</span> = <span class="literal">false</span></span><br><span class="line">=&gt; SyntaxError (Can<span class="string">'t assign to true)</span></span><br></pre></td></tr></table></figure><hr><p>同場加映：</p><p> 在練習Ruby的時候，通常我們會習慣用 p 和 puts 把結果印出來，像是下面這樣：</p><ul><li><p>印出字串</p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> p <span class="string">'this is a string'</span></span><br><span class="line"><span class="string">"this is a string"</span></span><br><span class="line"> =&gt; <span class="string">"this is a string"</span></span><br><span class="line"> </span><br><span class="line"> puts <span class="string">'this is a string'</span></span><br><span class="line">this is a string</span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure><ul><li>印出整數<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> p <span class="number">123</span></span><br><span class="line"><span class="number">123</span></span><br><span class="line"> =&gt; <span class="number">123</span></span><br><span class="line"> </span><br><span class="line"> puts <span class="number">123</span></span><br><span class="line"><span class="number">123</span></span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure></li></ul></li><li><p>印出Boolean</p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> p <span class="literal">true</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"> =&gt; true</span><br><span class="line"></span><br><span class="line">puts <span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure></li><li><p>試著印出 nil </p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">p <span class="literal">nil</span></span><br><span class="line"><span class="literal">nil</span></span><br><span class="line"> =&gt; nil</span><br><span class="line">puts <span class="literal">nil</span></span><br><span class="line">    <span class="comment">#是真的沒有東西，不是沒有打字喔！</span></span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure></li></ul><p>p 和 puts 都能幫我們印出結果，但是印出的內容不太一樣喔！<br>這個符號 <strong>=&gt;</strong>，在 Ruby是叫做 “回傳值” 的概念，暫時先有印象就好。<br>目前只需要知道：</p><ul><li>p 可以幫我們印出物件(object)本身，並回傳物件本身的值(value)</li><li>puts 則是會把物件轉換成字串印出來。<pre><code>就算是nil 也會被轉成空的字串“”，所以才會印出空白喔。</code></pre></li></ul><p>其實還有一個print，不過因為對他沒有愛，就這樣吧！</p><p>如果想進一步了解的話，可以參考下面連結：</p><p><a href="https://railsbook.tw/chapters/05-ruby-basic-1.html" target="_blank" rel="noopener">為你自己學 Ruby on Rails： 變數、常數、流程控制、迴圈</a><br><a href="https://www.garethrees.co.uk/2013/05/04/p-vs-puts-vs-print-in-ruby/" target="_blank" rel="noopener">Ruby p vs puts vs print</a><br><a href="https://www.rubyguides.com/2018/10/puts-vs-print/" target="_blank" rel="noopener">Understanding The Differences Between Puts, Print &amp; P</a></p><p>鐵人賽第一天，就先這樣囉！</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Ruby </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
 </search>
