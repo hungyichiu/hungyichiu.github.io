@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="變數與常數寫在前面：如果你和我一樣是新手，只是想了解一下 Ruby 寫起來是什麼感覺，我會推薦 Repl 這個網站。算是線上練習的一個好幫手。 如果你是想實作或是練習 Rails 的專案：  如果你是Windows 的使用者，那你可以：  1.買一台二手Mac。  2.買一台Mac。  3.買很多台Mac。(I’m not kidding)  謀啦，網路上有很多教學文：找一天比較有空的時候，爬個文">
+<meta name="keywords" content="Ruby">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Variables and Constants">
+<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;2019&#x2F;10&#x2F;30&#x2F;variables-and-constants&#x2F;index.html">
+<meta property="og:site_name" content="轉職之路，不由分說">
+<meta property="og:description" content="變數與常數寫在前面：如果你和我一樣是新手，只是想了解一下 Ruby 寫起來是什麼感覺，我會推薦 Repl 這個網站。算是線上練習的一個好幫手。 如果你是想實作或是練習 Rails 的專案：  如果你是Windows 的使用者，那你可以：  1.買一台二手Mac。  2.買一台Mac。  3.買很多台Mac。(I’m not kidding)  謀啦，網路上有很多教學文：找一天比較有空的時候，爬個文">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-10-30T06:26:55.897Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://chrischiu.site/2019/10/30/variables-and-constants/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Variables and Constants | 轉職之路，不由分說</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">轉職之路，不由分說</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">菜鳥工程師的學習筆記</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/variables-and-constants/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Variables and Constants
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-30 14:07:53 / Modified: 14:26:55" itemprop="dateCreated datePublished" datetime="2019-10-30T14:07:53+08:00">2019-10-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/10/30/variables-and-constants/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/variables-and-constants/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="變數與常數"><a href="#變數與常數" class="headerlink" title="變數與常數"></a>變數與常數</h1><h2 id="寫在前面："><a href="#寫在前面：" class="headerlink" title="寫在前面："></a>寫在前面：</h2><p>如果你和我一樣是新手，只是想了解一下 Ruby 寫起來是什麼感覺，<br>我會推薦 <a href="https://repl.it/" target="_blank" rel="noopener">Repl</a> 這個網站。<br>算是線上練習的一個好幫手。</p>
+<p>如果你是想實作或是練習 Rails 的專案：</p>
+<ul>
+<li>如果你是Windows 的使用者，那你可以：<br>  1.買一台二手Mac。<br>  2.買一台Mac。<br>  3.買很多台Mac。<del>(I’m not kidding)</del></li>
+</ul>
+<p>謀啦，網路上有很多教學文：找一天比較有空的時候，爬個文，兩三下就搞定！<br><a href="https://blogs.msdn.microsoft.com/microsoft_student_partners_in_taiwan/2017/10/03/wsltune/" target="_blank" rel="noopener">Microsoft - WSL基本安裝</a></p>
+<ul>
+<li>如果你已經在使用Mac：</li>
+</ul>
+<p>那你可以參考下列文章，或是網路上滿滿的教學文，完成環境建置：<br><a href="https://railsbook.tw/chapters/02-environment-setup.html" target="_blank" rel="noopener">為你自己學Ruby on Rails:環境建置篇</a></p>
+<hr>
+<p>咦？看倌您還在啊？正常人在看完上面那段不負責任的環境建置之後，<br>應該都會按下Cmd(Ctrl)+ W 或是 Cmd(Ctrl)+ Q 才是吧？</p>
+<p>好吧…<del>(沒有中招嗎？so sad…)</del></p>
+<p>根據某位授課講師的說法，要掌握一門程式語言要從下列幾東西開始：</p>
+<ul>
+<li>變數</li>
+<li>三種基本型別: String, Integer and Boolean</li>
+<li>兩種集合型別: Array and Hash</li>
+<li>函式</li>
+<li>分支條件與迴圈</li>
+<li>變數作用域</li>
+</ul>
+<p>所以，就先從變數(Variables)和常數(Constants)開始吧！</p>
+<hr>
+<h1 id="變數-Variables"><a href="#變數-Variables" class="headerlink" title="變數(Variables)"></a>變數(Variables)</h1><p>Ruby 中的變數共有以下四種：<br>type    | sample |identifier |<br>——  | —— | ——– |<br>區域變數 | name   | 非大寫字母開頭 |<br>全域區域 | $name  | $開頭 |<br>實體變數 | @name  | @開頭 |<br>類別變數 | @@name | @@開頭 |</p>
+<blockquote>
+<p>只有  全域變數 和 實體變數  有預設值 nil。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">puts <span class="variable">$name</span></span><br><span class="line">=&gt; nil</span><br><span class="line">puts @name</span><br><span class="line">=&gt; nil</span><br><span class="line">puts name</span><br><span class="line">=&gt; (undefined <span class="built_in">local</span> variable or method `name` <span class="keyword">for</span> main:Object)</span><br><span class="line">puts @@name</span><br><span class="line">=&gt; (uninitialized class variable @@name <span class="keyword">in</span> Object)</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h1 id="常數-Constants"><a href="#常數-Constants" class="headerlink" title="常數(Constants)"></a>常數(Constants)</h1><p>Ruby對常數的要求只有一點：</p>
+<blockquote>
+<p>常數的命名開頭要是英文字母大寫。</p>
+</blockquote>
+<p>下面的例子裡，就有兩個常數 Foo 和 Bar。<br>沒錯，常見的類別(class)名稱，必須要是常數才行喔！</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span></span></span><br><span class="line">    Bar</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="虛擬變數-pseudo-variable"><a href="#虛擬變數-pseudo-variable" class="headerlink" title="虛擬變數(pseudo_variable)"></a>虛擬變數(pseudo_variable)</h2><p>常用的虛擬變數有</p>
+<ul>
+<li>self : 呼叫方法的物件(The receiver object of the current method.)</li>
+<li>nil :  代表還沒有被設定值 (Undefined)</li>
+<li>true : 代表 True</li>
+<li>false : 代表 False</li>
+</ul>
+<blockquote>
+<p>虛擬變數算是比較特別的一群：<br>他們通常被當作像區域變數那樣來使用，但是無法被assign任何值。</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">self = <span class="string">'hahaha'</span></span><br><span class="line">=&gt; SyntaxError (Can<span class="string">'t change the value of self)</span></span><br><span class="line"><span class="string">nil = 18</span></span><br><span class="line"><span class="string">=&gt; SyntaxError (Can'</span>t assign to nil)</span><br><span class="line"><span class="literal">true</span> = <span class="literal">false</span></span><br><span class="line">=&gt; SyntaxError (Can<span class="string">'t assign to true)</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>同場加映：</p>
+<p> 在練習Ruby的時候，通常我們會習慣用 p 和 puts 把結果印出來，像是下面這樣：</p>
+<ul>
+<li><p>印出字串</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> p <span class="string">'this is a string'</span></span><br><span class="line"><span class="string">"this is a string"</span></span><br><span class="line"> =&gt; <span class="string">"this is a string"</span></span><br><span class="line"> </span><br><span class="line"> puts <span class="string">'this is a string'</span></span><br><span class="line">this is a string</span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure>
+<ul>
+<li>印出整數<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> p <span class="number">123</span></span><br><span class="line"><span class="number">123</span></span><br><span class="line"> =&gt; <span class="number">123</span></span><br><span class="line"> </span><br><span class="line"> puts <span class="number">123</span></span><br><span class="line"><span class="number">123</span></span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>印出Boolean</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> p <span class="literal">true</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"> =&gt; true</span><br><span class="line"></span><br><span class="line">puts <span class="literal">false</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>試著印出 nil </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">p <span class="literal">nil</span></span><br><span class="line"><span class="literal">nil</span></span><br><span class="line"> =&gt; nil</span><br><span class="line">puts <span class="literal">nil</span></span><br><span class="line">    <span class="comment">#是真的沒有東西，不是沒有打字喔！</span></span><br><span class="line"> =&gt; nil</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>p 和 puts 都能幫我們印出結果，但是印出的內容不太一樣喔！<br>這個符號 <strong>=&gt;</strong>，在 Ruby是叫做 “回傳值” 的概念，暫時先有印象就好。<br>目前只需要知道：</p>
+<ul>
+<li>p 可以幫我們印出物件(object)本身，並回傳物件本身的值(value)</li>
+<li>puts 則是會把物件轉換成字串印出來。<pre><code>就算是nil 也會被轉成空的字串“”，所以才會印出空白喔。</code></pre></li>
+</ul>
+<p>其實還有一個print，不過因為對他沒有愛，就這樣吧！</p>
+<p>如果想進一步了解的話，可以參考下面連結：</p>
+<p><a href="https://railsbook.tw/chapters/05-ruby-basic-1.html" target="_blank" rel="noopener">為你自己學 Ruby on Rails： 變數、常數、流程控制、迴圈</a><br><a href="https://www.garethrees.co.uk/2013/05/04/p-vs-puts-vs-print-in-ruby/" target="_blank" rel="noopener">Ruby p vs puts vs print</a><br><a href="https://www.rubyguides.com/2018/10/puts-vs-print/" target="_blank" rel="noopener">Understanding The Differences Between Puts, Print &amp; P</a></p>
+<p>鐵人賽第一天，就先這樣囉！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Ruby/" rel="tag"><i class="fa fa-tag"></i> Ruby</a>
+          </div>
+
+        
+
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#變數與常數"><span class="nav-number">1.</span> <span class="nav-text">變數與常數</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#寫在前面："><span class="nav-number">1.1.</span> <span class="nav-text">寫在前面：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#變數-Variables"><span class="nav-number">2.</span> <span class="nav-text">變數(Variables)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常數-Constants"><span class="nav-number">3.</span> <span class="nav-text">常數(Constants)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#虛擬變數-pseudo-variable"><span class="nav-number">3.1.</span> <span class="nav-text">虛擬變數(pseudo_variable)</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Chris Chiu"
+    src="/uploads/avatar.png">
+  <p class="site-author-name" itemprop="name">Chris Chiu</p>
+  <div class="site-description" itemprop="description">Fake it till you make it.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hungyichiu" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;hungyichiu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hungyichiu@gmail.com" title="E-Mail &amp;rarr; mailto:hungyichiu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hungyi.chiu.1" title="FB Page &amp;rarr; https:&#x2F;&#x2F;www.facebook.com&#x2F;hungyi.chiu.1" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chris Chiu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-hungyichiu-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://chrischiu.site/2019/10/30/variables-and-constants/",
+            identifier: "2019/10/30/variables-and-constants/",
+            title: "Variables and Constants"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-hungyichiu-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+</body>
+</html>
