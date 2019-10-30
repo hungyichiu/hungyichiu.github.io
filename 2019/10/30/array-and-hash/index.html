@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="好啦，昨天介紹完變數和常數，今天就從 Array 和 Hash 繼續下去吧！！ 什麼？你說我還沒講資料型別？阿是不會自己去google 喔？ 別急別急，讓我們慢慢看下去…  Array首先讓我們來看看下面這些陣列(Array)： 1234567a = [&amp;apos;What&amp;apos;, &amp;apos;I said is&amp;apos;, &amp;apos;is rubbish&amp;apos;, &amp;apos;everyone here&amp;apos;]b = [1, 2, 3]c = [true">
+<meta name="keywords" content="Ruby and Rails 的二三事,11th鐵人賽,Ruby">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day03   Array and Hash">
+<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;2019&#x2F;10&#x2F;30&#x2F;array-and-hash&#x2F;index.html">
+<meta property="og:site_name" content="轉職之路，不由分說">
+<meta property="og:description" content="好啦，昨天介紹完變數和常數，今天就從 Array 和 Hash 繼續下去吧！！ 什麼？你說我還沒講資料型別？阿是不會自己去google 喔？ 別急別急，讓我們慢慢看下去…  Array首先讓我們來看看下面這些陣列(Array)： 1234567a = [&amp;apos;What&amp;apos;, &amp;apos;I said is&amp;apos;, &amp;apos;is rubbish&amp;apos;, &amp;apos;everyone here&amp;apos;]b = [1, 2, 3]c = [true">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-10-30T08:30:39.623Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://chrischiu.site/2019/10/30/array-and-hash/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Day03   Array and Hash | 轉職之路，不由分說</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">轉職之路，不由分說</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">菜鳥工程師的學習筆記</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/array-and-hash/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Day03   Array and Hash
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-30 16:15:23 / Modified: 16:30:39" itemprop="dateCreated datePublished" datetime="2019-10-30T16:15:23+08:00">2019-10-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/10/30/array-and-hash/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/array-and-hash/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>好啦，昨天介紹完變數和常數，今天就從 Array 和 Hash 繼續下去吧！！</p>
+<p>什麼？你說我還沒講資料型別？<del>阿是不會自己去google 喔？</del></p>
+<p>別急別急，讓我們慢慢看下去…</p>
+<hr>
+<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p>首先讓我們來看看下面這些陣列(Array)：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="string">'What'</span>, <span class="string">'I said is'</span>, <span class="string">'is rubbish'</span>, <span class="string">'everyone here'</span>]</span><br><span class="line"></span><br><span class="line">b = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">c = [<span class="literal">true</span>, <span class="literal">true</span>, <span class="literal">true</span>, <span class="literal">true</span>, <span class="literal">false</span>]</span><br><span class="line"></span><br><span class="line">d = [<span class="string">'懦夫救星'</span>, <span class="number">28825252</span>, <span class="literal">true</span> ]</span><br></pre></td></tr></table></figure>
+<a id="more"></a> 
+<p><del>嗯？好像有奇怪的東西混進程式碼裡面…暫時先不管他啦！</del></p>
+<p>上面的 a, b, c, d 都是陣列，在Ruby 的世界，陣列裡面要放什麼，隨你高興。<br>你要都放字串，數字，或是boolean值，或是混在一起<del>做成撒尿牛丸？</del>，歡喜就好。</p>
+<blockquote>
+<p>在Ruby 的世界裡，幾乎所有的東西都是物件，依照物件類別的不同，<br>會有不同的方法可以使用。</p>
+</blockquote>
+<p>比如說：</p>
+<ul>
+<li>length, 可以幫我們取得陣列的長度（陣列元素的個數）<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="string">'What'</span>, <span class="string">'I said is'</span>, <span class="string">'is rubbish'</span>, <span class="string">'everyone here'</span>]</span><br><span class="line"></span><br><span class="line">a.length</span><br><span class="line">=&gt; <span class="number">4</span></span><br></pre></td></tr></table></figure></li>
+<li>array[index], 可以讓我們直接取得陣列中的元素(index 是從0 開始計算的)<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">a[<span class="number">0</span>]</span><br><span class="line">=&gt; <span class="string">"What"</span></span><br><span class="line">a[<span class="number">3</span>]</span><br><span class="line">=&gt; <span class="string">"everyone here"</span></span><br><span class="line">a[-<span class="number">1</span>]</span><br><span class="line">=&gt; <span class="string">"everyone here"</span></span><br><span class="line">a[-<span class="number">4</span>]</span><br><span class="line">=&gt; <span class="string">"What"</span></span><br><span class="line">a[-<span class="number">5</span>]</span><br><span class="line">=&gt; nil</span><br></pre></td></tr></table></figure>
+相信眼尖的你應該有發現，沒錯：<blockquote>
+<p>在Ruby 的世界裡index 可以是負數，會自動幫你從最後一個元素倒著數。</p>
+</blockquote>
+</li>
+<li>reverse, 可以反轉陣列內元素的順序</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.reverse</span><br><span class="line">=&gt;[<span class="string">"everyone here"</span>, <span class="string">"is rubbish"</span>, <span class="string">"I said is"</span>, <span class="string">"What"</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="更多Array可以使用的方法"><a href="#更多Array可以使用的方法" class="headerlink" title="更多Array可以使用的方法"></a>更多Array可以使用的方法</h2><p>還記得昨天提到的 each 嗎？ 他其實是Array可以使用的方法之一；<br>下面我們就來進一步介紹幾個比較常用的方法：</p>
+<ul>
+<li>select</li>
+<li>map</li>
+<li>reduce</li>
+</ul>
+<h3 id="Select-選出陣列中滿足特定條件的元素，回傳一個新的陣列"><a href="#Select-選出陣列中滿足特定條件的元素，回傳一個新的陣列" class="headerlink" title="Select - 選出陣列中滿足特定條件的元素，回傳一個新的陣列"></a>Select - 選出陣列中滿足特定條件的元素，回傳一個新的陣列</h3><p>首先，來試著選出 陣列a 中所有的奇數。<br>就用昨天剛學會的 each 來試試看吧！<br>寫起來大概會像這樣：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"></span><br><span class="line">b = []</span><br><span class="line"></span><br><span class="line">a.each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line"> b &lt;&lt; i <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">p b  <span class="comment"># [1, 3, 5, 7, 9]</span></span><br></pre></td></tr></table></figure>
+<p>如果改用select來寫呢？</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br><span class="line"></span><br><span class="line">p a.select &#123;<span class="params">|i|</span> i % <span class="number">2</span> == <span class="number">1</span>&#125; <span class="comment"># [1, 3, 5, 7, 9]</span></span><br></pre></td></tr></table></figure>
+<p>WTF?!!! 不不不，這是Ruby的日常喔！<br>稍微觀察一下，可以看出select的用法是這樣的：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.select&#123;<span class="params">|i|</span> <span class="string">"篩選的條件"</span>&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="map-對陣列中的元素做處理，然後回傳一個新的陣列"><a href="#map-對陣列中的元素做處理，然後回傳一個新的陣列" class="headerlink" title="map - 對陣列中的元素做處理，然後回傳一個新的陣列"></a>map - 對陣列中的元素做處理，然後回傳一個新的陣列</h3><p>接著我們試著將 陣列[1, 2, 3, 4, 5] 變成 [2, 4, 6, 8, 10]。<br>一樣，先用 each 來做，寫起來會像是這樣：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">c = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">d = []</span><br><span class="line">c.each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  d &lt;&lt;  i * <span class="number">2</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">p d <span class="comment"># [2, 4, 6, 8, 10]</span></span><br></pre></td></tr></table></figure>
+<p>那如果改用map寫呢？</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">c = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">p c.map&#123;<span class="params">|i|</span> i * <span class="number">2</span>&#125; <span class="comment"># [2, 4, 6, 8, 10]</span></span><br></pre></td></tr></table></figure>
+<p>WTF? 沒有剛剛那麼驚訝了吧？<br>聰明如你應該已經發現了:</p>
+<blockquote>
+<p>如果你需要再迴圈外面定義一個變數，然後在迴圈裡面重複的取用他；<br>那在Ruby通常會有更簡單的寫法。</p>
+</blockquote>
+<h3 id="reduce-對陣列中所有的元素，依據設定的條件，進行二元運算"><a href="#reduce-對陣列中所有的元素，依據設定的條件，進行二元運算" class="headerlink" title="reduce -  對陣列中所有的元素，依據設定的條件，進行二元運算"></a>reduce -  對陣列中所有的元素，依據設定的條件，進行二元運算</h3><p>接著，我試著來計算1到10的總和吧！<br>老樣子，我們先用each來做：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> total = <span class="number">0</span></span><br><span class="line">[*<span class="number">1</span>..<span class="number">10</span>].each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line">  sum = sum + i</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">p sum <span class="comment"># 55</span></span><br></pre></td></tr></table></figure>
+<p>看出端倪了嗎？換成reduce的話，可以寫成這樣：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p [*<span class="number">1</span>..<span class="number">10</span>].reduce(<span class="number">0</span>) &#123;<span class="params">|total,i|</span> total + i&#125; <span class="comment"># 55</span></span><br></pre></td></tr></table></figure>
+<p>有看到奇怪的東西嗎？ </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[*<span class="number">1</span>..<span class="number">10</span> ] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>*是建立Array的一種縮寫</p>
+</blockquote>
+<p>此外還有一個需要注意的地方：</p>
+<blockquote>
+<p>reduce(0) ，括號裡面的 0 ，是我們給total設定的初始值，它的作用和用each的寫法時，<br> 在外面寫的 total = 0 一樣。</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p [*<span class="number">1</span>..<span class="number">10</span>].reduce &#123;<span class="params">|total,i|</span> total + i&#125; <span class="comment"># 55</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>當你沒有設定初始值， reduce方法，會自己拿第一個元素作為初始值，在這個例子裡就是 1 。</p>
+</blockquote>
+<p>可以透過下面的程式碼觀察兩者的差異：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[*<span class="number">1</span>..<span class="number">10</span>].reduce(<span class="number">0</span>)&#123;<span class="params">|total,i|</span> p (total + i) &#125; <span class="comment"># 1, 3, ... 45, 55</span></span><br><span class="line">[*<span class="number">1</span>..<span class="number">10</span>].reduce&#123;<span class="params">|total,i|</span> p (total + i) &#125; <span class="comment"># 3, ... 45, 55</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h2><p><del>公堂之上假設一下，我想是無傷大雅的</del><br>假設我們有一籃水果，裡面有蘋果5個，香蕉3個，芒果4個。<br>下面三種寫法的意思都是一樣的：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basket = &#123; <span class="string">"apple"</span> =&gt; <span class="number">5</span>, <span class="string">"banana"</span> =&gt; <span class="number">3</span>, <span class="string">"mango"</span> =&gt; <span class="number">4</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basket = &#123; <span class="symbol">:apple</span> =&gt; <span class="number">5</span>, <span class="symbol">:banana</span> =&gt; <span class="number">3</span>, <span class="symbol">:mango</span> =&gt; <span class="number">4</span> &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basket = &#123; <span class="symbol">apple:</span> <span class="number">5</span>, <span class="symbol">banana:</span> <span class="number">3</span>, <span class="symbol">mango:</span> <span class="number">4</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>在 basket 這個 hash 當中：<br>“apple”、”banana” 和 “mango”，我們稱之為key<br>5、3和4，我們稱之為value</p>
+<p>但是，當你想知道蘋果有幾個的時候：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">basket[<span class="symbol">:apple</span>] <span class="comment">#只有這樣才拿得到值</span></span><br><span class="line">=&gt; <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>這裡的 :apple 他是一個符號(symbol)</p>
+</blockquote>
+<p>each 也是 Hash 可以使用的方法之一喔！<br>所以我們可以這樣做：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">basket.each &#123; <span class="params">|i|</span>  p i &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#印出</span></span><br><span class="line"><span class="comment"># ["apple", 5]</span></span><br><span class="line"><span class="comment"># ["banana", 3]</span></span><br><span class="line"><span class="comment"># ["mango", 4]</span></span><br></pre></td></tr></table></figure>
+<p>你也可以像下面這樣</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">basket.each &#123;<span class="params">|k,v|</span> p <span class="string">"Key is <span class="subst">#&#123;k&#125;</span>, Value is <span class="subst">#&#123;v&#125;</span>"</span>&#125;</span><br><span class="line"><span class="comment">#印出</span></span><br><span class="line"><span class="comment">#"Key is apple, Value is 5"</span></span><br><span class="line"><span class="comment">#"Key is banana, Value is 3"</span></span><br><span class="line"><span class="comment">#"Key is mango, Value is 4"</span></span><br></pre></td></tr></table></figure>
+
+<p>或者，你也可以用 keys 和 values 的方法，只取出其中一項：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">basket.keys</span><br><span class="line"> =&gt; [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"mango"</span>]</span><br><span class="line">basket.values</span><br><span class="line"> =&gt; [<span class="number">5</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+
+<p>好，今天的鐵人賽就到這邊告一個段落，明天見！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Ruby-and-Rails-%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/" rel="tag"><i class="fa fa-tag"></i> Ruby and Rails 的二三事</a>
+              <a href="/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag"><i class="fa fa-tag"></i> 11th鐵人賽</a>
+              <a href="/tags/Ruby/" rel="tag"><i class="fa fa-tag"></i> Ruby</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/30/flowcontrol-loop-iteration/" rel="next" title="Day02  流程控制、迴圈與迭代">
+                  <i class="fa fa-chevron-left"></i> Day02  流程控制、迴圈與迭代
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/10/30/symbol-and-string/" rel="prev" title="Day04  Symbol (符號)和 String(字串) 的差別">
+                  Day04  Symbol (符號)和 String(字串) 的差別 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Array"><span class="nav-number">1.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多Array可以使用的方法"><span class="nav-number">2.</span> <span class="nav-text">更多Array可以使用的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Select-選出陣列中滿足特定條件的元素，回傳一個新的陣列"><span class="nav-number">2.1.</span> <span class="nav-text">Select - 選出陣列中滿足特定條件的元素，回傳一個新的陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map-對陣列中的元素做處理，然後回傳一個新的陣列"><span class="nav-number">2.2.</span> <span class="nav-text">map - 對陣列中的元素做處理，然後回傳一個新的陣列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce-對陣列中所有的元素，依據設定的條件，進行二元運算"><span class="nav-number">2.3.</span> <span class="nav-text">reduce -  對陣列中所有的元素，依據設定的條件，進行二元運算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash"><span class="nav-number">3.</span> <span class="nav-text">Hash</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Chris Chiu"
+    src="/uploads/avatar.png">
+  <p class="site-author-name" itemprop="name">Chris Chiu</p>
+  <div class="site-description" itemprop="description">Fake it till you make it.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hungyichiu" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;hungyichiu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hungyichiu@gmail.com" title="E-Mail &amp;rarr; mailto:hungyichiu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hungyi.chiu.1" title="FB Page &amp;rarr; https:&#x2F;&#x2F;www.facebook.com&#x2F;hungyi.chiu.1" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chris Chiu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-hungyichiu-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://chrischiu.site/2019/10/30/array-and-hash/",
+            identifier: "2019/10/30/array-and-hash/",
+            title: "Day03   Array and Hash"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-hungyichiu-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+</body>
+</html>

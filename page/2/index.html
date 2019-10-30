@@ -55,13 +55,13 @@
   <meta name="description" content="Fake it till you make it.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="轉職之路，不由分說">
-<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;page&#x2F;2&#x2F;index.html">
 <meta property="og:site_name" content="轉職之路，不由分說">
 <meta property="og:description" content="Fake it till you make it.">
 <meta property="og:locale" content="zh-tw">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://chrischiu.site/">
+<link rel="canonical" href="https://chrischiu.site/page/2/">
 
 
 <script id="page-configurations">
@@ -212,7 +212,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/event-listener/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/case-when/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -226,7 +226,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/event-listener/" class="post-title-link" itemprop="url">從 Ruby 看 JS 的 事件監聽機制</a>
+            <a href="/2019/10/30/case-when/" class="post-title-link" itemprop="url">Day10 其實我不懂Case...When</a>
         </h2>
 
         <div class="post-meta">
@@ -237,7 +237,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-10-30 17:07:42 / Modified: 17:10:24" itemprop="dateCreated datePublished" datetime="2019-10-30T17:07:42+08:00">2019-10-30</time>
+              <time title="Created: 2019-10-30 16:40:11 / Modified: 16:41:06" itemprop="dateCreated datePublished" datetime="2019-10-30T16:40:11+08:00">2019-10-30</time>
             </span>
 
           
@@ -249,8 +249,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/event-listener/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/event-listener/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/30/case-when/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/case-when/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -265,10 +265,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>一直都被JS的事件監聽機制弄得暈頭轉向的，<br>好不容易有機會有這個範例，看不懂也要先紀錄下來啊XDD</p>
+          <p>順手翻了一下之前發的文，發現之前在講流程控制的時候，忘記介紹Case…When了，<br>正好就拿來當今天的主題，廢話不多說，直接開始吧！</p>
+<h1 id="case…when"><a href="#case…when" class="headerlink" title="case…when"></a>case…when</h1><p>前面我們介紹過<code>if...elsif</code>的語法，通常這代表你需要判斷的條件比較複雜，<br>比如說像下面的例子：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">blood_type</span><span class="params">(type)</span></span></span><br><span class="line">  <span class="keyword">if</span> type == <span class="string">'A'</span></span><br><span class="line">    puts <span class="string">"你的血型是Ａ型"</span></span><br><span class="line">  <span class="keyword">elsif</span> type == <span class="string">'B'</span></span><br><span class="line">    puts <span class="string">"你的血型是Ｂ型"</span></span><br><span class="line">  <span class="keyword">elsif</span> type == <span class="string">'O'</span></span><br><span class="line">    puts <span class="string">"你的血型是Ｏ型"</span></span><br><span class="line">  <span class="keyword">elsif</span> type == <span class="string">'AB'</span></span><br><span class="line">    puts <span class="string">"你的血型是ＡＢ型"</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    puts <span class="string">"血型未確認"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">blood_type(<span class="string">'A'</span>) <span class="comment"># 你的血型是Ａ型</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/event-listener/#more" rel="contents">
+              <a class="btn" href="/2019/10/30/case-when/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -292,7 +294,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/sprintf/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/rest-and-restful/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -306,7 +308,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/sprintf/" class="post-title-link" itemprop="url">Day19 "%"和 "sprintf" in Ruby?</a>
+            <a href="/2019/10/30/rest-and-restful/" class="post-title-link" itemprop="url">Day09 REST 和 RESTful</a>
         </h2>
 
         <div class="post-meta">
@@ -317,7 +319,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-10-30 17:04:13 / Modified: 17:04:56" itemprop="dateCreated datePublished" datetime="2019-10-30T17:04:13+08:00">2019-10-30</time>
+              <time title="Created: 2019-10-30 16:37:26 / Modified: 16:39:25" itemprop="dateCreated datePublished" datetime="2019-10-30T16:37:26+08:00">2019-10-30</time>
             </span>
 
           
@@ -329,8 +331,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/sprintf/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/sprintf/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/30/rest-and-restful/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/rest-and-restful/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -345,366 +347,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>僅記錄在找 format string in Ruby 時，對 % 和sprintf<br>產生的疑問和查詢的過程。</p>
-<p>首先，從Ruby 的官方文件開始：</p>
-<h2 id=""><a href="#" class="headerlink" title="%"></a>%</h2><blockquote>
-<p>Format - Uses str as a format specification, and returns the result of applying it to arg. If the format specification contains more than one substitution, then arg must be an Array or Hash containing the values to be substituted. See Kernel::sprintf for details of the format string.</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/30/sprintf/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/spring-and-spring-stop/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="Chris Chiu">
-      <meta itemprop="description" content="Fake it till you make it.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="轉職之路，不由分說">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/30/spring-and-spring-stop/" class="post-title-link" itemprop="url">Day18 鐵道裡的春天</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-10-30 17:03:03 / Modified: 17:03:41" itemprop="dateCreated datePublished" datetime="2019-10-30T17:03:03+08:00">2019-10-30</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2019/10/30/spring-and-spring-stop/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/spring-and-spring-stop/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>每次在建立新的專案的時候，終端機最後一段都會出現：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  run  bundle exec spring binstub --all</span><br><span class="line">* bin/<span class="symbol">rake:</span> Spring inserted</span><br><span class="line">* bin/<span class="symbol">rails:</span> Spring inserted</span><br></pre></td></tr></table></figure>
-
-<p>又或者，常常在clone一個專案下來時：在執行db:migrate 或是 bundle install指令時卡住;<br>通常這時候，只要在終端機輸入<code>spring stop</code>，然後再重新執行前述指令，一切就能正常執行了。</p>
-<h2 id="Spring-到底是什麼？"><a href="#Spring-到底是什麼？" class="headerlink" title="Spring 到底是什麼？"></a>Spring 到底是什麼？</h2><p>根據官方文件記載如下：</p>
-<p>Spring 是在 Ruby on Rails 4.1 版時才加入<strong>應用程式預加載器</strong></p>
-<blockquote>
-<p>Spring 會預加載你的 Rails 應用程式。保持應用程式在背景執行，如此一來在執行 Rails 命令時：如跑測試、rake、migrate 時，不用每次都重啟 Rails 應用程式，加速你的開發流程。</p>
-</blockquote>
-<p>總而言之，就是讓開發人員能夠在寫code的時候，即時地在頁面上看到修改的成果。<br>真的是很貼心的設計呢！</p>
-<p>打開你的Gemfile會看到，當你建立一個新的專案時，spring 已經被預設放在開發環境(development)裡了，<br>所以你可以直接執行<code>bundle</code>就可以啦！</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ...略...</span></span><br><span class="line">group <span class="symbol">:development</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Access an interactive console on exception pages or by calling 'console' anywhere in the code.</span></span><br><span class="line">  gem <span class="string">'web-console'</span>, <span class="string">'&gt;= 3.3.0'</span></span><br><span class="line">  gem <span class="string">'listen'</span>, <span class="string">'&gt;= 3.0.5'</span>, <span class="string">'&lt; 3.2'</span></span><br><span class="line">  <span class="comment"># Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring</span></span><br><span class="line">  gem <span class="string">'spring'</span></span><br><span class="line">  gem <span class="string">'spring-watcher-listen'</span>, <span class="string">'~&gt; 2.0.0'</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment"># ...略...</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Spring-的特色"><a href="#Spring-的特色" class="headerlink" title="Spring 的特色"></a>Spring 的特色</h2><p>那 Spring 有什麼特色呢？這次我們換來看看github上的資料吧！</p>
-<ul>
-<li>Totally automatic; no need to explicitly start and stop the background process</li>
-<li>Reloads your application code on each run</li>
-<li>Restarts your application when configs / initializers / gem dependencies are changed</li>
-</ul>
-<p>比較需要注意的是第三點：<br>雖然Spring會預先幫你載入專案內所有的東西，並且動態的讀取你寫入的程式碼，<br>但是當你修改是像設定檔之類的東西，就需要重新啟動server才有用。</p>
-<h2 id="如何使用-Spring"><a href="#如何使用-Spring" class="headerlink" title="如何使用 Spring"></a>如何使用 Spring</h2><p>姆…這個部分，就請大家直接參考Spring頁面上的內容，<br>自己動手做一次吧！</p>
-<p><a href="https://github.com/rails/spring/blob/master/README.md" target="_blank" rel="noopener">Spring</a><br><a href="https://rails.ruby.tw/4_1_release_notes.html" target="_blank" rel="noopener">Ruby on Rails 4.1 發佈記</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/search-from/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="Chris Chiu">
-      <meta itemprop="description" content="Fake it till you make it.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="轉職之路，不由分說">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/30/search-from/" class="post-title-link" itemprop="url">Day17  如何實作搜索表單</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-10-30 17:01:22 / Modified: 17:02:22" itemprop="dateCreated datePublished" datetime="2019-10-30T17:01:22+08:00">2019-10-30</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2019/10/30/search-from/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/search-from/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近做專案，正好做到 搜尋的功能，<br>今天就稍微紀錄一下囉！</p>
-<p>對先前的form 還有印象嗎？讓我們來快速複習一下：</p>
-<p>預備知識：</p>
-<ul>
-<li>form_for ：配合Model所建立的表單(如：POST 或 EDIT)</li>
-<li>form_tag ：不須配合Model技能建立的表單(如：這次要做的搜尋功能)</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/30/search-from/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/boolean-operator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="Chris Chiu">
-      <meta itemprop="description" content="Fake it till you make it.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="轉職之路，不由分說">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/30/boolean-operator/" class="post-title-link" itemprop="url">Day16 && / and / | | / or</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-10-30 16:59:30 / Modified: 17:00:42" itemprop="dateCreated datePublished" datetime="2019-10-30T16:59:30+08:00">2019-10-30</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2019/10/30/boolean-operator/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/boolean-operator/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>從標題就開始鬼畫符是怎樣？</p>
-<p>謀啦，這是今天要介紹的主角群啦！</p>
-<p>這幾個邏輯運算子： <code>&amp;&amp;</code> <code>and</code> <code>||</code> <code>or</code></p>
-<p>一開始都以為他們只是彼此的替身而已，殊不知，</p>
-<h2 id="待誌姆洗憨郎所想A架尼甘單"><a href="#待誌姆洗憨郎所想A架尼甘單" class="headerlink" title="待誌姆洗憨郎所想A架尼甘單!!"></a>待誌姆洗憨郎所想A架尼甘單!!</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/10/30/boolean-operator/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/associations/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/uploads/avatar.png">
-      <meta itemprop="name" content="Chris Chiu">
-      <meta itemprop="description" content="Fake it till you make it.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="轉職之路，不由分說">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/30/associations/" class="post-title-link" itemprop="url">Day15 Model 之間的關聯</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-10-30 16:57:27 / Modified: 16:58:23" itemprop="dateCreated datePublished" datetime="2019-10-30T16:57:27+08:00">2019-10-30</time>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2019/10/30/associations/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/associations/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在Rails中，Model之間的關聯(Associations)，最容易被誤解的就是：<br>在每個資料表做一些什麼設定，就可以讓這幾個資料表彼此產生連結。</p>
-<p>其實在Rails中的關聯指的是：在 Model 層級的關係上，透過 Model 所提供的一些方法（如： has_one、has_many 或 belongs_to）搭配 Rails 的資料表慣例設定主鍵（Primary Key）及外部鍵（Foreign Key），讓這些資料表串在一起。並產生一些方便實用的語法讓我們可以操作資料庫。</p>
-<p>比較常見的資料表關聯大致有以下三種：</p>
-<ul>
-<li>一對一</li>
-<li>一對多</li>
-<li>多對多</li>
-</ul>
+          <p>昨天稍微介紹了一下Rails的主角：Routes 和 MVC，</p>
+<p>今天就稍微解釋一下 REST 和 RESTful 吧！</p>
 <hr>
+<h2 id="關於-REST"><a href="#關於-REST" class="headerlink" title="關於 REST"></a>關於 REST</h2><ul>
+<li><p>REST的全文是：REpresentational State Transfer，<br>是由Roy Thomas Fielding博士於2000年所提出的一種軟體架構風格。</p>
+</li>
+<li><p>通常會透過使用HTTP協議（在技術上也可以使用其他協議）來實現。</p>
+</li>
+<li><p>REST本身不是協議，它只是一組慣例，遵循這些慣例可以使<br>不同的Web的應用程序或API之間維持資源(resources)命名的簡單性和一致性。</p>
+</li>
+<li><p>透過資源命名的簡單性和一致性，讓不同軟體/程式在網路（例如網際網路）<br>中互相傳遞資訊能更加便利。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/associations/#more" rel="contents">
+              <a class="btn" href="/2019/10/30/rest-and-restful/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -728,7 +384,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/active-record/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/rails-routes-mvc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -742,7 +398,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/active-record/" class="post-title-link" itemprop="url">Day14 Active Record？可以說中文嗎？</a>
+            <a href="/2019/10/30/rails-routes-mvc/" class="post-title-link" itemprop="url">Day08 Rails (Routes 和 MVC)</a>
         </h2>
 
         <div class="post-meta">
@@ -753,7 +409,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-10-30 16:48:40 / Modified: 16:49:42" itemprop="dateCreated datePublished" datetime="2019-10-30T16:48:40+08:00">2019-10-30</time>
+              <time title="Created: 2019-10-30 16:35:15 / Modified: 16:37:49" itemprop="dateCreated datePublished" datetime="2019-10-30T16:35:15+08:00">2019-10-30</time>
             </span>
 
           
@@ -765,8 +421,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/active-record/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/active-record/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/30/rails-routes-mvc/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/rails-routes-mvc/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -781,17 +437,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>一開始聽到 Model/ORM/Active Record  這三個東西時，<br>我心裡的OS是：</p>
-<p>“龍哥，可以請你說中文嗎？”<br>“什麼？！已經是中文了嗎？！” 囧…</p>
-<p> 簡單來說Active Record是…</p>
+          <p>花了點時間，總算是把 Ruby 的一些觀念稍微的介紹了一下，<br>接下來換要進入Rails 的部分囉！</p>
+<h1 id="什麼是Rails"><a href="#什麼是Rails" class="headerlink" title="什麼是Rails"></a>什麼是Rails</h1><p>Rails 是一款用Ruby這個程式語言所編寫出來，開源Web的應用框架。</p>
+<p>主要的設計理念是DRY（Don’t Repeat Yourself）和<br>COC（Convention Over Configuration）。</p>
 <hr>
-<h1 id="Active-Record"><a href="#Active-Record" class="headerlink" title="Active Record"></a>Active Record</h1><ul>
-<li>Active Record 指的就是Rails MVC架構中的Ｍ， Model 。</li>
-<li>ORM (Object Relational Mapping)，翻成中文叫物件關聯映射。<del>什麼鬼啦？</del></li>
-<li>ORM框架 的主要特性是，讓我們可以使用程式語言(Ruby)去操作資料庫語言(SQL)。
+<h1 id="Routes-和-MVC"><a href="#Routes-和-MVC" class="headerlink" title="Routes 和 MVC"></a>Routes 和 MVC</h1><p>這邊借用一下<a href="https://railsbook.tw/" target="_blank" rel="noopener">為你自己學Ruby on Rails</a>的圖來說明：<br><img src="https://i.imgur.com/s9LYDFU.png" alt=""></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/active-record/#more" rel="contents">
+              <a class="btn" href="/2019/10/30/rails-routes-mvc/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -815,7 +468,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/form-for-and-form-with/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/self-in-ruby/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -829,7 +482,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/form-for-and-form-with/" class="post-title-link" itemprop="url">Day13 風馮諷form</a>
+            <a href="/2019/10/30/self-in-ruby/" class="post-title-link" itemprop="url">Day07  Ruby   中的 self 到底是？</a>
         </h2>
 
         <div class="post-meta">
@@ -840,7 +493,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-10-30 16:46:40 / Modified: 16:47:48" itemprop="dateCreated datePublished" datetime="2019-10-30T16:46:40+08:00">2019-10-30</time>
+              <time title="Created: 2019-10-30 16:31:29 / Modified: 16:33:04" itemprop="dateCreated datePublished" datetime="2019-10-30T16:31:29+08:00">2019-10-30</time>
             </span>
 
           
@@ -852,8 +505,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/form-for-and-form-with/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/form-for-and-form-with/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/30/self-in-ruby/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/self-in-ruby/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -868,15 +521,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>不論是哪種程式語言，都會很常用到表單（Form）。<br>今天就來簡單的介紹一下rails有哪些幫忙建立表單的幫手吧！<br>Let’s 走！</p>
-<h1 id="起手式-form-tag"><a href="#起手式-form-tag" class="headerlink" title="起手式 form_tag"></a>起手式 form_tag</h1><p>據說，很久很久以前，是有在用 form_tag 這個語法建立form的,<br>通常是在沒有要使用特定 Model 時使用的。</p>
-<p>只需要在erb檔案裡寫下：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;%= form_tag <span class="keyword">do</span> %&gt;</span><br><span class="line">  This A Form</span><br><span class="line">&lt;% <span class="keyword">end</span> %&gt;</span><br></pre></td></tr></table></figure>
+          <p>第一次看到在Ruby 中看到 <code>self</code> 是在介紹<br>instance method 和 class method 的時候：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span>  </span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">say</span> <span class="comment">#instance method</span></span></span><br><span class="line">    puts <span class="string">"I'm instance method"</span></span><br><span class="line">  <span class="keyword">end</span>  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">all</span> <span class="comment">#class method ，記得加上self</span></span></span><br><span class="line">    puts <span class="string">"I'm class method"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">kitty =  Cat.new<span class="comment">#使用kitty 產生實體</span></span><br><span class="line">kitty.say       <span class="comment"># I'm instance method</span></span><br><span class="line">Cat.all         <span class="comment"># I'm class method</span></span><br></pre></td></tr></table></figure>
 
-<p>Rails 會自動幫你翻譯長出下面這串東西：</p>
+<hr>
+<p>從這時候開始，<code>self</code> 就一直在我的腦海中揮之不去，每天每天都在想著：</p>
+<h1 id="親愛的-self，-哩道底洗蝦米碗糕？！"><a href="#親愛的-self，-哩道底洗蝦米碗糕？！" class="headerlink" title="親愛的 self， 哩道底洗蝦米碗糕？！"></a>親愛的 self， 哩道底洗蝦米碗糕？！</h1>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/form-for-and-form-with/#more" rel="contents">
+              <a class="btn" href="/2019/10/30/self-in-ruby/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -900,7 +553,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/enum-with-column/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/class-and-module/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -914,7 +567,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/enum-with-column/" class="post-title-link" itemprop="url">Day12 利用Enum設定欄位資料</a>
+            <a href="/2019/10/30/class-and-module/" class="post-title-link" itemprop="url">Day06  Class(類別) 和 Ｍodule(模組) 的不同</a>
         </h2>
 
         <div class="post-meta">
@@ -925,7 +578,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-10-30 16:43:54 / Modified: 16:45:08" itemprop="dateCreated datePublished" datetime="2019-10-30T16:43:54+08:00">2019-10-30</time>
+              <time title="Created: 2019-10-30 16:28:36 / Modified: 16:30:36" itemprop="dateCreated datePublished" datetime="2019-10-30T16:28:36+08:00">2019-10-30</time>
             </span>
 
           
@@ -937,8 +590,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/enum-with-column/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/enum-with-column/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/30/class-and-module/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/class-and-module/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -953,16 +606,182 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>最近在做專案，學到了用Enum來設定欄位資料的方式，就順手紀錄一下吧！</p>
-<blockquote>
-<p>Enum 讓我們在設定資料表的欄位時，可以用Integer，而不是用String來儲存。</p>
+          <h1 id="什麼是Class-類別"><a href="#什麼是Class-類別" class="headerlink" title="什麼是Class(類別)"></a>什麼是Class(類別)</h1><p>其實，Class 是很生活化的：</p>
+<p>當你和朋友走近一家拉麵店，菜單上面有：<br>麵條粗細，湯頭濃淡，口味有醬油或是豚骨，蔥花海苔要不要增量…之類的。<br>點完過了一陣子之後，正妹服務生就會將一碗一碗的拉麵端出來。</p>
+<p><del>是正妹服務生？(快存檔！！)</del></p>
+<p>什麼？你說正妹服務生就是Class? 真是孺子可教也(毆飛)</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/30/class-and-module/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/method-and-block/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/30/method-and-block/" class="post-title-link" itemprop="url">Day05   稍微介紹一下：Method 和 Block</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-30 16:23:48 / Modified: 16:30:44" itemprop="dateCreated datePublished" datetime="2019-10-30T16:23:48+08:00">2019-10-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/10/30/method-and-block/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/method-and-block/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><p>前面一直提到方法，那麼到底在Ruby裡，方法(Method)是怎麼被定義的呢？</p>
+<p>下面是，在Ruby裡，我們定義方法和呼叫方法的樣子：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> 方法名稱<span class="params">(參數個數隨意)</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>呼叫方法的時候，() 是可以省略的：<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say_hello_to</span><span class="params">(someone)</span></span></span><br><span class="line">  puts <span class="string">"Hi, <span class="subst">#&#123;someone&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"> say_hello_to(<span class="string">"DinDin"</span>) <span class="comment"># "Hi, DinDin"</span></span><br><span class="line"> say_hello_to <span class="string">"LaLa"</span>    <span class="comment"># "Hi, LaLa"</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/30/method-and-block/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/symbol-and-string/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/30/symbol-and-string/" class="post-title-link" itemprop="url">Day04  Symbol (符號)和 String(字串) 的差別</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-30 16:17:24 / Modified: 16:52:44" itemprop="dateCreated datePublished" datetime="2019-10-30T16:17:24+08:00">2019-10-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/10/30/symbol-and-string/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/symbol-and-string/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>要了解Symbol (符號)和 String(字串)  的差別，<br>首先，我們得先複習一下Variable(變數) 和 String(字串)：</p>
+<h2 id="Variable-變數"><a href="#Variable-變數" class="headerlink" title="Variable(變數)"></a>Variable(變數)</h2><blockquote>
+<p>變數，它本身並沒有形態。你可以把它想像成是「一張有寫著名字的標籤，貼在某個東西上面」，被貼的那個東西有形態，但標籤本身沒有。<br> - from <a href="https://railsbook.tw/chapters/05-ruby-basic-1.html" target="_blank" rel="noopener">為你自己學 Ruby and Rails</a></p>
 </blockquote>
-<p>感受不出有什麼好處嗎？</p>
-<p>讓我們來個小劇場吧！˙</p>
-<p>對新手來說，當我們想建立一個 Model User，而且希望裡面有名字(name)和角色(role)時：<br>名字(name)不用說，當然是用字串來存放，那角色(role)呢？<br>如果有現在有角色總共可以分成： admin, teacher, student；</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">"I am string"</span> </span><br><span class="line"><span class="comment"># str 是一個變數，是個標籤，它被貼在"I am string"這個字串上面。</span></span><br><span class="line">str.<span class="keyword">class</span> =&gt; String</span><br><span class="line">str.object_id =&gt; <span class="number">70345293831900</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/enum-with-column/#more" rel="contents">
+              <a class="btn" href="/2019/10/30/symbol-and-string/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -986,7 +805,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/gemfile/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/array-and-hash/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -1000,7 +819,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/gemfile/" class="post-title-link" itemprop="url">Day11 Gemfile</a>
+            <a href="/2019/10/30/array-and-hash/" class="post-title-link" itemprop="url">Day03   Array and Hash</a>
         </h2>
 
         <div class="post-meta">
@@ -1011,7 +830,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2019-10-30 16:42:34 / Modified: 16:45:28" itemprop="dateCreated datePublished" datetime="2019-10-30T16:42:34+08:00">2019-10-30</time>
+              <time title="Created: 2019-10-30 16:15:23 / Modified: 16:30:39" itemprop="dateCreated datePublished" datetime="2019-10-30T16:15:23+08:00">2019-10-30</time>
             </span>
 
           
@@ -1023,8 +842,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/gemfile/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/gemfile/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/30/array-and-hash/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/array-and-hash/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1039,12 +858,182 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>今天就來簡單的介紹一下Gemfile吧！</p>
-<h1 id="Gemfile"><a href="#Gemfile" class="headerlink" title="Gemfile"></a>Gemfile</h1><p>Gemfile 是 Rails 用來管理每個 application 要使用哪些 Gem 的檔案。<br>同時也是個紀錄，讓每份專案不論在哪裏被pull下來，都能根據Gemfile裡的紀錄，<br>來安裝對應的Gem，以期能達到相同的效果。</p>
-<p>在專案裡的Gemfile大概是長這個樣子的：(以rails 5.2.3為例)</p>
+          <p>好啦，昨天介紹完變數和常數，今天就從 Array 和 Hash 繼續下去吧！！</p>
+<p>什麼？你說我還沒講資料型別？<del>阿是不會自己去google 喔？</del></p>
+<p>別急別急，讓我們慢慢看下去…</p>
+<hr>
+<h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p>首先讓我們來看看下面這些陣列(Array)：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="string">'What'</span>, <span class="string">'I said is'</span>, <span class="string">'is rubbish'</span>, <span class="string">'everyone here'</span>]</span><br><span class="line"></span><br><span class="line">b = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">c = [<span class="literal">true</span>, <span class="literal">true</span>, <span class="literal">true</span>, <span class="literal">true</span>, <span class="literal">false</span>]</span><br><span class="line"></span><br><span class="line">d = [<span class="string">'懦夫救星'</span>, <span class="number">28825252</span>, <span class="literal">true</span> ]</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/gemfile/#more" rel="contents">
+              <a class="btn" href="/2019/10/30/array-and-hash/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/flowcontrol-loop-iteration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/30/flowcontrol-loop-iteration/" class="post-title-link" itemprop="url">Day02  流程控制、迴圈與迭代</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-30 16:09:55 / Modified: 16:30:32" itemprop="dateCreated datePublished" datetime="2019-10-30T16:09:55+08:00">2019-10-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/10/30/flowcontrol-loop-iteration/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/flowcontrol-loop-iteration/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>昨天講完變數與常數，今天就簡單的介紹一下流程控制、迴圈與迭代吧！<br>主要會針對 Ruby 和其他程式語言不同的地方。</p>
+<h1 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h1><h2 id="if…elsif…end"><a href="#if…elsif…end" class="headerlink" title="if…elsif…end"></a>if…elsif…end</h2><blockquote>
+<p> 其他程式語言用的是  else if  ，但是在Ruby是 elsif，別搞錯囉！</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">bmi = <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> bmi &lt; <span class="number">18</span></span><br><span class="line">  puts <span class="string">"太瘦了"</span></span><br><span class="line"><span class="keyword">elsif</span> bmi &gt;= <span class="number">18</span> &amp;&amp; bmi &lt;= <span class="number">24</span></span><br><span class="line">  puts <span class="string">"標準身材"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  puts <span class="string">"太胖了"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/30/flowcontrol-loop-iteration/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/variables-and-constants/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/30/variables-and-constants/" class="post-title-link" itemprop="url">Day01 變數與常數</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-30 14:07:53 / Modified: 16:52:40" itemprop="dateCreated datePublished" datetime="2019-10-30T14:07:53+08:00">2019-10-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/10/30/variables-and-constants/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/variables-and-constants/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="變數與常數"><a href="#變數與常數" class="headerlink" title="變數與常數"></a>變數與常數</h1><h2 id="寫在前面："><a href="#寫在前面：" class="headerlink" title="寫在前面："></a>寫在前面：</h2><p>如果你和我一樣是新手，只是想了解一下 Ruby 寫起來是什麼感覺，<br>我會推薦 <a href="https://repl.it/" target="_blank" rel="noopener">Repl</a> 這個網站。<br>算是線上練習的一個好幫手。</p>
+<p>如果你是想實作或是練習 Rails 的專案：</p>
+<ul>
+<li><p>如果你是Windows 的使用者，那你可以：<br>  1.買一台二手Mac。<br>  2.買一台Mac。<br>  3.買很多台Mac。<del>(I’m not kidding)</del></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/30/variables-and-constants/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1068,7 +1057,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
   </nav>
 
 

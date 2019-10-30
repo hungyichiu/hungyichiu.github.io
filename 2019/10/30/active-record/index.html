@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一開始聽到 Model&#x2F;ORM&#x2F;Active Record  這三個東西時，我心裡的OS是： “龍哥，可以請你說中文嗎？”“什麼？！已經是中文了嗎？！” 囧…  簡單來說Active Record是…  Active Record Active Record 指的就是Rails MVC架構中的Ｍ， Model 。 ORM (Object Relational Mapping)，翻成中文叫物件關聯映">
+<meta name="keywords" content="Ruby and Rails 的二三事,11th鐵人賽,Rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day14 Active Record？可以說中文嗎？">
+<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;2019&#x2F;10&#x2F;30&#x2F;active-record&#x2F;index.html">
+<meta property="og:site_name" content="轉職之路，不由分說">
+<meta property="og:description" content="一開始聽到 Model&#x2F;ORM&#x2F;Active Record  這三個東西時，我心裡的OS是： “龍哥，可以請你說中文嗎？”“什麼？！已經是中文了嗎？！” 囧…  簡單來說Active Record是…  Active Record Active Record 指的就是Rails MVC架構中的Ｍ， Model 。 ORM (Object Relational Mapping)，翻成中文叫物件關聯映">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;upload&#x2F;images&#x2F;20190928&#x2F;20116733WNxmlay1Hl.png">
+<meta property="og:updated_time" content="2019-10-30T08:49:42.271Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;ithelp.ithome.com.tw&#x2F;upload&#x2F;images&#x2F;20190928&#x2F;20116733WNxmlay1Hl.png">
+
+<link rel="canonical" href="https://chrischiu.site/2019/10/30/active-record/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Day14 Active Record？可以說中文嗎？ | 轉職之路，不由分說</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">轉職之路，不由分說</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">菜鳥工程師的學習筆記</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/active-record/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Day14 Active Record？可以說中文嗎？
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-30 16:48:40 / Modified: 16:49:42" itemprop="dateCreated datePublished" datetime="2019-10-30T16:48:40+08:00">2019-10-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/10/30/active-record/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/active-record/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>一開始聽到 Model/ORM/Active Record  這三個東西時，<br>我心裡的OS是：</p>
+<p>“龍哥，可以請你說中文嗎？”<br>“什麼？！已經是中文了嗎？！” 囧…</p>
+<p> 簡單來說Active Record是…</p>
+<hr>
+<h1 id="Active-Record"><a href="#Active-Record" class="headerlink" title="Active Record"></a>Active Record</h1><ul>
+<li>Active Record 指的就是Rails MVC架構中的Ｍ， Model 。</li>
+<li>ORM (Object Relational Mapping)，翻成中文叫物件關聯映射。<del>什麼鬼啦？</del></li>
+<li>ORM框架 的主要特性是，讓我們可以使用程式語言(Ruby)去操作資料庫語言(SQL)。<a id="more"></a>
+
+</li>
+</ul>
+<blockquote>
+<blockquote>
+<p>Active Record 就是透過ORM的概念建立起來的框架。</p>
+</blockquote>
+</blockquote>
+<h2 id="Active-Record-主要的特性"><a href="#Active-Record-主要的特性" class="headerlink" title="Active Record 主要的特性"></a>Active Record 主要的特性</h2><ul>
+<li>表示 Model 與資料。</li>
+<li>表示 Model 之間的關係。</li>
+<li>表示相關 Model 之間的繼承關係。</li>
+<li>持久化資料存入資料庫的驗證。</li>
+<li>以物件導向的風格操作資料庫。</li>
+</ul>
+<p>姆…有點難以理解？慢慢往下看吧！</p>
+<hr>
+<h1 id="ORM可以帶來什麼好處？"><a href="#ORM可以帶來什麼好處？" class="headerlink" title="ORM可以帶來什麼好處？"></a>ORM可以帶來什麼好處？</h1><h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><p><img src="https://ithelp.ithome.com.tw/upload/images/20190928/20116733WNxmlay1Hl.png" alt="https://ithelp.ithome.com.tw/upload/images/20190928/20116733WNxmlay1Hl.png"></p>
+<p>上面這張圖在講的是一種常見的網路攻擊叫做 SQL injection，<br>就是在傳輸到網站伺服器裡的資料裡直接寫 SQL 語法，從而達到某些特定目的。<br>好一點就只是資料被竊取，狠一點，就像是圖片裡說的，直接刪除所有的資料。<br>而透過ORM的框架，我們可以避免這種慘劇的發生。</p>
+<h2 id="Strong-Parameter"><a href="#Strong-Parameter" class="headerlink" title="Strong Parameter"></a>Strong Parameter</h2><p>還記得昨天介紹的表單(form)嗎？通常我們從 form 表單裡接收到的資料（data），rails會將這些data打包成一包<code>params</code> 來傳遞，但是這包 <code>params</code> 並不能直接拿來使用喔！<br>如果你這樣寫，是會噴出錯誤訊息的喔！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user = User.create(params)</span><br></pre></td></tr></table></figure>
+
+<p>這是rails 為了防範SQL injection所做的設計；<br>所我們必須改寫成下面這樣：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clean_params = params.require(:user).permit(:name, :gender, :email)</span><br><span class="line">user = User.create(clean_params)</span><br></pre></td></tr></table></figure>
+<p>透過<code>require</code>和<code>permit</code>讓rails知道，我們是要讓哪些資料被存入資料庫；<br>這樣一來，資料才能順利地被寫入資料庫喔！</p>
+<hr>
+<h1 id="Active-Record-中的慣例勝於設定-COC"><a href="#Active-Record-中的慣例勝於設定-COC" class="headerlink" title="Active Record 中的慣例勝於設定(COC)"></a>Active Record 中的慣例勝於設定(COC)</h1><p>在rails裡，對Model的命名慣例是這樣的：</p>
+<ul>
+<li>資料表 - 複數形，由底線分隔多個單字。</li>
+<li>Model 類別 - 單數形，第一個字母大寫。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Model/class</th>
+<th>檔案名稱</th>
+<th>資料表/schema</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cat</td>
+<td>cat.rb</td>
+<td>cats</td>
+</tr>
+<tr>
+<td>Post</td>
+<td>post.rb</td>
+<td>posts</td>
+</tr>
+<tr>
+<td>CartItem</td>
+<td>cart_item.rb</td>
+<td>cart_items</td>
+</tr>
+</tbody></table>
+<p>像上面的例子，我們建立了一個 Model Cat，<br>這就是用慣例產生的樣子：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#cat.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> &lt; ActiveRecord::Base</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>當然，如果你真的不喜歡遵守COC，你也可以這樣做：</p>
+<ul>
+<li><p>想要修改對應的資料表，你可以這樣寫：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  <span class="keyword">self</span>.table_name = <span class="string">"CAT"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>想要修改資料表的欄位，你可以這樣寫：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  <span class="keyword">self</span>.primary_key = <span class="string">"cat_id"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<h1 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h1><p> 既然有了資料表，我們就可以對他進行基本的CRUD操作。<br> CRUD 是四種資料操作的簡稱：Create, Read, Update and Delete，<br> 分別是新增、讀取、更新與刪除。</p>
+<h2 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h2><p> 新增資料的方式有兩種：</p>
+<ul>
+<li><p>create: 這種寫法，會將資料直接寫入資料庫。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user = User.create(<span class="symbol">name:</span> <span class="string">"Vegeta"</span>, <span class="symbol">age:</span> <span class="number">35</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>new: 只有建立資料，但是沒有被寫入資料庫。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">user = User.new <span class="keyword">do</span> <span class="params">|u|</span></span><br><span class="line">    u.name = <span class="string">"Goku"</span></span><br><span class="line">    u.age = <span class="number">35</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">user.save</span><br></pre></td></tr></table></figure>
+<p>需要搭配save方法，才會將資料寫入資料庫喔！</p>
+<h2 id="Read"><a href="#Read" class="headerlink" title="Read"></a>Read</h2><p>讀取資料的方法有很多，底下僅簡單列出一些：</p>
+<ul>
+<li>all : 幫你選出所有的資料。<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#慣例上，如果選出來的資料會是多筆時，變數名稱我們會用複數來表示</span></span><br><span class="line">users = User.all</span><br></pre></td></tr></table></figure></li>
+<li>find_b :  幫你選出符合條件的特定某一筆的資料。<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user = User.find_by(<span class="symbol">name:</span> <span class="string">'Vegeta'</span>)</span><br></pre></td></tr></table></figure></li>
+<li>where : 幫你選出符合條件的特定多筆的資料。</li>
+<li>order : 依照設定的條件進行排序。<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user = User.where(<span class="symbol">gender:</span> <span class="string">'male'</span>).order(<span class="symbol">age:</span> <span class="symbol">:desc</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h2>更新資料也有兩種寫法：</li>
+<li>先選出資料，修改資料，再寫入資料庫。<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user = User.find_by(<span class="symbol">name:</span> <span class="string">'Vegeta'</span>)</span><br><span class="line">user.name = <span class="string">'Incha'</span></span><br><span class="line">user.save</span><br></pre></td></tr></table></figure></li>
+<li>先選出資料，修改資料同時寫入資料庫。<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user = User.find_by(<span class="symbol">name:</span> <span class="string">'Vegeta'</span>)</span><br><span class="line">user.update(<span class="symbol">name:</span> <span class="string">'Incha'</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h2><ul>
+<li>destroy : 將資料從資料表中刪除。<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user = User.find_by(<span class="symbol">name:</span> <span class="string">'David'</span>)</span><br><span class="line">user.destroy</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="驗證"><a href="#驗證" class="headerlink" title="驗證"></a>驗證</h1><p>在建立資料時，有時我們會希望某些欄位有條件限制，在rails中，<br>我們可以透過設定 validation 來達到我們要的目的：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  validates <span class="symbol">:name</span>, <span class="symbol">presence:</span> <span class="literal">true</span></span><br><span class="line">  validates <span class="symbol">:age</span>, <span class="symbol">numericality:</span> &#123; <span class="symbol">greater_than_or_equal_to:</span> <span class="number">0</span> &#125;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>上面寫的兩個validates，意思分別是：</p>
+<ul>
+<li>name 是必填欄位(<code>presence: true</code>)。</li>
+<li>age  必須是數字(<code>numericality</code>)，而且必須大於或等於0(<code>{ greater_than_or_equal_to: 0 }</code>)。</li>
+</ul>
+<p>還是有點看不懂? validates 其實也是個方法:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">validates(欄位, 條件)</span><br></pre></td></tr></table></figure>
+
+<p>讓我們來還原上面那段真正的樣子：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> &lt; ActiveRecord::Base</span></span><br><span class="line">  validates(<span class="symbol">:name</span>, &#123;<span class="symbol">presence:</span> <span class="literal">true</span>&#125;)</span><br><span class="line">  validates(<span class="symbol">:age</span>, &#123;<span class="symbol">numericality:</span> &#123; <span class="symbol">greater_than_or_equal_to:</span> <span class="number">0</span> &#125;&#125;)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>這樣應該比較好理解一些了吧！</p>
+<hr>
+<p>今天對Active Record的介紹這邊啦！！<br>鐵人賽，我們明天再見！</p>
+<p>參考資料：</p>
+<p><a href="https://rails.ruby.tw/active_record_basics.html" target="_blank" rel="noopener">Active Redord - RailsGuides中文版</a><br><a href="https://guides.rubyonrails.org/active_record_basics.html" target="_blank" rel="noopener">Active Redord - RailsGuides</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Ruby-and-Rails-%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/" rel="tag"><i class="fa fa-tag"></i> Ruby and Rails 的二三事</a>
+              <a href="/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag"><i class="fa fa-tag"></i> 11th鐵人賽</a>
+              <a href="/tags/Rails/" rel="tag"><i class="fa fa-tag"></i> Rails</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/30/form-for-and-form-with/" rel="next" title="Day13 風馮諷form">
+                  <i class="fa fa-chevron-left"></i> Day13 風馮諷form
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/10/30/associations/" rel="prev" title="Day15 Model 之間的關聯">
+                  Day15 Model 之間的關聯 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Active-Record"><span class="nav-number">1.</span> <span class="nav-text">Active Record</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Active-Record-主要的特性"><span class="nav-number">1.1.</span> <span class="nav-text">Active Record 主要的特性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ORM可以帶來什麼好處？"><span class="nav-number">2.</span> <span class="nav-text">ORM可以帶來什麼好處？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安全性"><span class="nav-number">2.1.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strong-Parameter"><span class="nav-number">2.2.</span> <span class="nav-text">Strong Parameter</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Active-Record-中的慣例勝於設定-COC"><span class="nav-number">3.</span> <span class="nav-text">Active Record 中的慣例勝於設定(COC)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CRUD"><span class="nav-number">4.</span> <span class="nav-text">CRUD</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Create"><span class="nav-number">4.1.</span> <span class="nav-text">Create</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Read"><span class="nav-number">4.2.</span> <span class="nav-text">Read</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Update"><span class="nav-number">4.3.</span> <span class="nav-text">Update</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delete"><span class="nav-number">4.4.</span> <span class="nav-text">Delete</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#驗證"><span class="nav-number">5.</span> <span class="nav-text">驗證</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Chris Chiu"
+    src="/uploads/avatar.png">
+  <p class="site-author-name" itemprop="name">Chris Chiu</p>
+  <div class="site-description" itemprop="description">Fake it till you make it.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hungyichiu" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;hungyichiu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hungyichiu@gmail.com" title="E-Mail &amp;rarr; mailto:hungyichiu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hungyi.chiu.1" title="FB Page &amp;rarr; https:&#x2F;&#x2F;www.facebook.com&#x2F;hungyi.chiu.1" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chris Chiu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-hungyichiu-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://chrischiu.site/2019/10/30/active-record/",
+            identifier: "2019/10/30/active-record/",
+            title: "Day14 Active Record？可以說中文嗎？"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-hungyichiu-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+</body>
+</html>

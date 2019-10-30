@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="要了解Symbol (符號)和 String(字串)  的差別，首先，我們得先複習一下Variable(變數) 和 String(字串)： Variable(變數) 變數，它本身並沒有形態。你可以把它想像成是「一張有寫著名字的標籤，貼在某個東西上面」，被貼的那個東西有形態，但標籤本身沒有。 - from 為你自己學 Ruby and Rails  1234str = &quot;I am string&quot; #">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day04  Symbol (符號)和 String(字串) 的差別">
+<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;2019&#x2F;10&#x2F;30&#x2F;symbol-and-string&#x2F;index.html">
+<meta property="og:site_name" content="轉職之路，不由分說">
+<meta property="og:description" content="要了解Symbol (符號)和 String(字串)  的差別，首先，我們得先複習一下Variable(變數) 和 String(字串)： Variable(變數) 變數，它本身並沒有形態。你可以把它想像成是「一張有寫著名字的標籤，貼在某個東西上面」，被貼的那個東西有形態，但標籤本身沒有。 - from 為你自己學 Ruby and Rails  1234str = &quot;I am string&quot; #">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-10-30T08:52:44.500Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://chrischiu.site/2019/10/30/symbol-and-string/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Day04  Symbol (符號)和 String(字串) 的差別 | 轉職之路，不由分說</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">轉職之路，不由分說</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">菜鳥工程師的學習筆記</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/symbol-and-string/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Day04  Symbol (符號)和 String(字串) 的差別
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-30 16:17:24 / Modified: 16:52:44" itemprop="dateCreated datePublished" datetime="2019-10-30T16:17:24+08:00">2019-10-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/10/30/symbol-and-string/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/symbol-and-string/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>要了解Symbol (符號)和 String(字串)  的差別，<br>首先，我們得先複習一下Variable(變數) 和 String(字串)：</p>
+<h2 id="Variable-變數"><a href="#Variable-變數" class="headerlink" title="Variable(變數)"></a>Variable(變數)</h2><blockquote>
+<p>變數，它本身並沒有形態。你可以把它想像成是「一張有寫著名字的標籤，貼在某個東西上面」，被貼的那個東西有形態，但標籤本身沒有。<br> - from <a href="https://railsbook.tw/chapters/05-ruby-basic-1.html" target="_blank" rel="noopener">為你自己學 Ruby and Rails</a></p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">str = <span class="string">"I am string"</span> </span><br><span class="line"><span class="comment"># str 是一個變數，是個標籤，它被貼在"I am string"這個字串上面。</span></span><br><span class="line">str.<span class="keyword">class</span> =&gt; String</span><br><span class="line">str.object_id =&gt; <span class="number">70345293831900</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a> 
+<h2 id="String-字串"><a href="#String-字串" class="headerlink" title="String(字串)"></a>String(字串)</h2><blockquote>
+<p>String 是一個字串物件，同時也是一串由字母(characters)<br> 所組成的陣列(Array)，所以許多陣列上的方法也都適用。</p>
+</blockquote>
+ <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字串的內容可以任意修改。</span></span><br><span class="line"> str[<span class="number">3</span>] =&gt; <span class="string">"m"</span></span><br><span class="line"> str.reverse =&gt; <span class="string">"gnirts ma I"</span></span><br><span class="line"> str[<span class="number">0</span>] = <span class="string">"A"</span></span><br><span class="line"> p str =&gt; <span class="string">"A am string"</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Symbol-符號"><a href="#Symbol-符號" class="headerlink" title="Symbol(符號)"></a>Symbol(符號)</h2><blockquote>
+<p>A Symbol is the most basic Ruby object you can create. It’s just a name and an internal ID. - rubylearing.com<br>Symbol objects represent names and some strings inside the Ruby interpreter.  from ruby-doc.org</p>
+</blockquote>
+<p>Symbol(符號)：</p>
+<ul>
+<li>Symbol 是一個有名字的物件。</li>
+<li>Symbol 是一個值，不是變數。</li>
+<li>Symbol 具有唯一性(ID)的特徵，所以不能修改。</li>
+</ul>
+<p>讓我們來看看下面的範例：</p>
+<ol>
+<li><p>:name 是一個物件</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">:name</span>.<span class="keyword">class</span> =&gt; Symbol</span><br><span class="line"><span class="symbol">:name</span>.object_id =&gt; <span class="number">87708</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>:name 是一個值，有他自己的名字，:name。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">2</span></span><br><span class="line">=&gt; <span class="number">2</span></span><br><span class="line">x = <span class="symbol">:name</span></span><br><span class="line">=&gt; <span class="symbol">:name</span></span><br></pre></td></tr></table></figure></li>
+<li><p>:name 不是變數，無法被賦予值。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">:name</span> = <span class="string">"string"</span></span><br><span class="line">=&gt; syntax error, unexpected <span class="string">'='</span> ...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>#:name，具有唯一性。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#每次在印出"name"字串時，所得到的object_id 都不同</span></span><br><span class="line">p <span class="string">"name"</span>.object_id =&gt; <span class="number">70143757662660</span></span><br><span class="line">p <span class="string">"name"</span>.object_id =&gt; <span class="number">70143757662560</span></span><br><span class="line">p <span class="string">"name"</span>.object_id =&gt; <span class="number">70143757662460</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#在印出:name的時候，只有一個object_id(唯一性)。</span></span><br><span class="line">p <span class="symbol">:name</span>.object_id =&gt; <span class="number">1057308</span></span><br><span class="line">p <span class="symbol">:name</span>.object_id =&gt; <span class="number">1057308</span></span><br><span class="line">p <span class="symbol">:name</span>.object_id =&gt; <span class="number">1057308</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="5">
+<li>無法對:name進行修改。<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">:name</span>[<span class="number">0</span>] =&gt; <span class="string">"n"</span></span><br><span class="line"><span class="symbol">:name</span>.reverse =&gt; NoMethodError</span><br><span class="line"><span class="symbol">:name</span>[<span class="number">0</span>] = A =&gt; NameError (uninitialized constant A)</span><br><span class="line"><span class="symbol">:name</span>[<span class="number">0</span>] = a =&gt; NameError (undefined local variable <span class="keyword">or</span> method <span class="string">`a' for main:Object)</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<hr>
+<h2 id="Symbol和String-之間的互相轉換"><a href="#Symbol和String-之間的互相轉換" class="headerlink" title="Symbol和String 之間的互相轉換"></a>Symbol和String 之間的互相轉換</h2><p> <a href="https://repl.it/@Chris_Chiu/Symbol" target="_blank" rel="noopener">Transform between Symbol and String </a></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">name = <span class="symbol">:name</span></span><br><span class="line">p name</span><br><span class="line">str = name.to_s</span><br><span class="line">p str</span><br><span class="line">s2sym_1 = str.to_sym</span><br><span class="line">s2sym_2 = str.intern</span><br><span class="line">p s2sym_1 <span class="comment"># convert from .to_sym</span></span><br><span class="line">p s2sym_2 <span class="comment"># convert from .intern</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="有其他方式會產生Symbol嗎？"><a href="#有其他方式會產生Symbol嗎？" class="headerlink" title="有其他方式會產生Symbol嗎？"></a>有其他方式會產生Symbol嗎？</h2><blockquote>
+<p>Symbols are names - names of instance variables, names of methods, names of classes. - rubylearing.com<br>Thus if Fred is a constant in one context, a method in another, and a class in a third, the Symbol :Fred will be the same object in all three contexts.<br> - ruby-doc.org</p>
+</blockquote>
+<p>你可以用Google翻譯一下上面文字，或是直接看翻譯蒟蒻：<br>有四種方式會產生Symbol:</p>
+<ul>
+<li>實體變數(instant variable)</li>
+<li>定義方法(method)</li>
+<li>建立類別(Class); Class name 本身就是常數。</li>
+<li>常數(contant)</li>
+</ul>
+<p><a href="https://repl.it/@Chris_Chiu/Symbol" target="_blank" rel="noopener">建立Symbol</a></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span></span></span><br><span class="line">  @weight</span><br><span class="line">  Hi = <span class="number">1</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">meow</span></span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">puts <span class="symbol">:Cat</span>.object_id.to_s + <span class="string">" is from class Cat"</span></span><br><span class="line">puts <span class="symbol">:weight</span>.object_id.to_s + <span class="string">" is from instance variable weight"</span></span><br><span class="line">puts <span class="symbol">:Hi</span>.object_id.to_s + <span class="string">" is from constant Hi"</span></span><br><span class="line">puts <span class="symbol">:meow</span>.object_id.to_s + <span class="string">" is from method meow"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在Repl.it上的執行結果</span></span><br><span class="line"><span class="number">1047588</span> is from <span class="class"><span class="keyword">class</span> <span class="title">Cat</span></span></span><br><span class="line"><span class="number">1048668</span> is from instance variable weight</span><br><span class="line"><span class="number">1048228</span> is from constant Hi</span><br><span class="line"><span class="number">1048348</span> is from method meow</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a href="https://repl.it/@Chris_Chiu/Symbol" target="_blank" rel="noopener">如果實體變數、方法、類別、常數命名都相同的時候會…？</a></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>什麼時候該用Symbol，什麼時候該用String？<br>If you use the contents of a string, this content may change, using a string.<br>If you use a fixed name or an identifier, use the symbol. - IBM opensource</p>
+</blockquote>
+<p>簡單來說：<br>當你存放的內容是會變動時，使用String。<br>當你存放固定資料或是希望資料具有唯一性時，使用Symbol。</p>
+<hr>
+<blockquote>
+<p>Symbol是用在什麼地方呢？</p>
+</blockquote>
+<p>#這是在存取資料時常用的Hash</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">profile = &#123;<span class="symbol">name:</span> <span class="string">'kk'</span>, <span class="symbol">age:</span> <span class="number">18</span>, <span class="symbol">email:</span> <span class="string">'kk@5xruby.tw'</span>&#125; </span><br><span class="line"><span class="comment"># 改成舊式的寫法：</span></span><br><span class="line">profile = &#123;<span class="symbol">:name</span> =&gt; <span class="string">'kk'</span>, <span class="symbol">:age</span> =&gt; <span class="number">18</span>, <span class="symbol">:email</span> =&gt; <span class="string">'kk@5xruby.tw'</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>#這是在Rails中常見的Migration檔的內容:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CreateTodos</span> &lt; ActiveRecord::Migration[5.2]</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">change</span></span></span><br><span class="line">    create_table <span class="symbol">:todos</span> <span class="keyword">do</span> <span class="params">|t|</span></span><br><span class="line">      t.string <span class="symbol">:title</span></span><br><span class="line">      t.string <span class="symbol">:description</span></span><br><span class="line">      t.references <span class="symbol">:user</span>, <span class="symbol">foreign_key:</span> <span class="literal">true</span></span><br><span class="line">t.timestamps</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>#這是在Rails中常見的Model中的檔案內容:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Todo</span> &lt; ApplicationRecord</span></span><br><span class="line">  belongs_to <span class="symbol">:user</span></span><br><span class="line">validates <span class="symbol">:title</span>, <span class="symbol">:description</span>, <span class="symbol">presence:</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>冷知識：Symbol 命名的注意事項<br>Symbol 在命名時，不接受”\“字元：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#irb Mode</span></span><br><span class="line">:name =&gt; :name</span><br><span class="line">:n\ame =&gt; SyntaxError</span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<p>以上，就是Symbol (符號)和 String(字串) 的差別。<br>鐵人賽，我們下次再見！！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/30/array-and-hash/" rel="next" title="Day03   Array and Hash">
+                  <i class="fa fa-chevron-left"></i> Day03   Array and Hash
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/10/30/method-and-block/" rel="prev" title="Day05   稍微介紹一下：Method 和 Block">
+                  Day05   稍微介紹一下：Method 和 Block <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Variable-變數"><span class="nav-number">1.</span> <span class="nav-text">Variable(變數)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-字串"><span class="nav-number">2.</span> <span class="nav-text">String(字串)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Symbol-符號"><span class="nav-number">3.</span> <span class="nav-text">Symbol(符號)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Symbol和String-之間的互相轉換"><span class="nav-number">4.</span> <span class="nav-text">Symbol和String 之間的互相轉換</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有其他方式會產生Symbol嗎？"><span class="nav-number">5.</span> <span class="nav-text">有其他方式會產生Symbol嗎？</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Chris Chiu"
+    src="/uploads/avatar.png">
+  <p class="site-author-name" itemprop="name">Chris Chiu</p>
+  <div class="site-description" itemprop="description">Fake it till you make it.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hungyichiu" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;hungyichiu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hungyichiu@gmail.com" title="E-Mail &amp;rarr; mailto:hungyichiu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hungyi.chiu.1" title="FB Page &amp;rarr; https:&#x2F;&#x2F;www.facebook.com&#x2F;hungyi.chiu.1" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chris Chiu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-hungyichiu-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://chrischiu.site/2019/10/30/symbol-and-string/",
+            identifier: "2019/10/30/symbol-and-string/",
+            title: "Day04  Symbol (符號)和 String(字串) 的差別"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-hungyichiu-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+</body>
+</html>

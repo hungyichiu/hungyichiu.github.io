@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="僅記錄在找 format string in Ruby 時，對 % 和sprintf產生的疑問和查詢的過程。 首先，從Ruby 的官方文件開始： % Format - Uses str as a format specification, and returns the result of applying it to arg. If the format specification contai">
+<meta name="keywords" content="Ruby and Rails 的二三事,11th鐵人賽,Ruby">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day19 &quot;%&quot;和 &quot;sprintf&quot; in Ruby?">
+<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;2019&#x2F;10&#x2F;30&#x2F;sprintf&#x2F;index.html">
+<meta property="og:site_name" content="轉職之路，不由分說">
+<meta property="og:description" content="僅記錄在找 format string in Ruby 時，對 % 和sprintf產生的疑問和查詢的過程。 首先，從Ruby 的官方文件開始： % Format - Uses str as a format specification, and returns the result of applying it to arg. If the format specification contai">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-10-30T09:04:56.710Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://chrischiu.site/2019/10/30/sprintf/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Day19 "%"和 "sprintf" in Ruby? | 轉職之路，不由分說</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">轉職之路，不由分說</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">菜鳥工程師的學習筆記</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/sprintf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Day19 "%"和 "sprintf" in Ruby?
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-30 17:04:13 / Modified: 17:04:56" itemprop="dateCreated datePublished" datetime="2019-10-30T17:04:13+08:00">2019-10-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/10/30/sprintf/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/sprintf/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>僅記錄在找 format string in Ruby 時，對 % 和sprintf<br>產生的疑問和查詢的過程。</p>
+<p>首先，從Ruby 的官方文件開始：</p>
+<h2 id=""><a href="#" class="headerlink" title="%"></a>%</h2><blockquote>
+<p>Format - Uses str as a format specification, and returns the result of applying it to arg. If the format specification contains more than one substitution, then arg must be an Array or Hash containing the values to be substituted. See Kernel::sprintf for details of the format string.</p>
+</blockquote>
+<a id="more"></a>
+
+<hr>
+<p>老樣子，英文字太多，就分段一個一個來：</p>
+<ol>
+<li>Uses str as a <strong>format specification</strong>, and returns the <strong>result</strong> of applying it to <strong>arg</strong>.</li>
+<li>If the <strong>format specification</strong> contains more than one substitution, then <strong>arg</strong> must be an Array or Hash containing the values to be substituted.</li>
+<li>See <strong>Kernel::sprintf</strong> for details of the format string.</li>
+</ol>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"%05d"</span> % <span class="number">123</span>                              <span class="comment">#=&gt; "00123"</span></span><br><span class="line"><span class="string">"%-5s: %016x"</span> % [ <span class="string">"ID"</span>, <span class="keyword">self</span>.object_id ]  <span class="comment">#=&gt; "ID   : 00002b054ec93168"</span></span><br><span class="line"><span class="string">"foo = %&#123;foo&#125;"</span> % &#123; <span class="symbol">:foo</span> =&gt; <span class="string">'bar'</span> &#125;        <span class="comment">#=&gt; "foo = bar"</span></span><br><span class="line"></span><br><span class="line">str % arg   <span class="comment">#=&gt; result</span></span><br><span class="line"></span><br><span class="line">“format specification” % arg( as target )   <span class="comment">#=&gt; result( what you expect to )</span></span><br><span class="line"></span><br><span class="line">格式規範 % arg                             <span class="comment">#=&gt;   結果</span></span><br></pre></td></tr></table></figure>
+
+<p>所以，％是用來格式化文字的，會依據妳所使用的 format specification (格式規範)。<br>很好，新的問題來了：什麼是 format specification？有哪些 type？</p>
+<hr>
+<p> 要回答上面的問題之前，得先在進步查一下<code>Kernel::sprintf</code>在API裡寫了什麼：</p>
+<h2 id="sprintf-args-public"><a href="#sprintf-args-public" class="headerlink" title="sprintf(*args) public"></a>sprintf(*args) public</h2><blockquote>
+<p>Returns the string resulting from applying format_string to any additional arguments. Within the format string, any characters other than format sequences are copied to the result.<br>The syntax of a format sequence is follows.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%[flags][width][.precision]type</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>A format sequence consists of a percent sign, followed by optional flags, width, and precision indicators, then terminated with a field type character. The field type controls how the corresponding sprintf argument is to be interpreted, while the flags modify that interpretation.</p>
+</blockquote>
+<p>姆姆，果然是這樣，和我想的一樣呢!<del>說人話啊渾球！！</del><br>為了方便理解和查詢，姑且稍微整理一下吧！</p>
+<ul>
+<li>常見的類型</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Field type</th>
+<th><strong>Integer Format</strong></th>
+<th>請給我中文</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>b (or B)</td>
+<td>binary number</td>
+<td>2進位數字</td>
+</tr>
+<tr>
+<td><strong>d (or i or u)</strong></td>
+<td>decimal number</td>
+<td>10進位數字</td>
+</tr>
+<tr>
+<td>o</td>
+<td>octal number</td>
+<td>8進位數字</td>
+</tr>
+<tr>
+<td>x (or X)</td>
+<td>hexadecimal number</td>
+<td>16進位數字</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>Field type</th>
+<th><strong>Float Format</strong></th>
+<th>請給我中文</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>e(or E)</td>
+<td>exponential notation</td>
+<td>科學計算表示</td>
+</tr>
+<tr>
+<td><strong>f</strong></td>
+<td>float</td>
+<td>浮點數</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>Field type</th>
+<th><strong>Other Format</strong></th>
+<th>請給我中文</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>s</strong></td>
+<td>string</td>
+<td>字串</td>
+</tr>
+</tbody></table>
+<ul>
+<li>flag 的範例：</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#沒有設定flag</span></span><br><span class="line"><span class="string">"%d"</span> % <span class="number">123</span>  <span class="comment">#=&gt; "123"</span></span><br><span class="line"><span class="comment">#設定+作為flag</span></span><br><span class="line"><span class="string">"%+d"</span> % <span class="number">123</span> <span class="comment">#=&gt; "+123"</span></span><br><span class="line"><span class="comment">#設定 作為flag</span></span><br><span class="line"><span class="string">"% d"</span> % <span class="number">123</span> <span class="comment">#=&gt; " 123"</span></span><br><span class="line"></span><br><span class="line"><span class="string">"%.0f"</span> % <span class="number">1234</span> <span class="comment">#=&gt; "1234"</span></span><br><span class="line"><span class="comment">#設定#作為flag，用來強制產生小數點</span></span><br><span class="line"><span class="string">"%#.0f"</span> % <span class="number">1234</span> <span class="comment">#=&gt; "1234."</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>width 的範例：</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"%+20d"</span> % <span class="number">123</span>  <span class="comment">#=&gt; "                +123"</span></span><br><span class="line"><span class="string">"%-20d"</span> % <span class="number">123</span>  <span class="comment">#=&gt; "123                 "</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>大概就是這樣…<br>其實，直接看官方文件比較快的說…</p>
+<p>啊哈哈哈，剛剛發現自己昨天鐵人賽的文章還放在草稿沒發出去時，<br>真想掐死昨天的自己啊…囧</p>
+<p>嘛，雖然沒辦法連續30天發文，但還是要逼自己繼續下去。<br>鐵人賽，我會繼續撐下去的！！</p>
+<p>參考資料：</p>
+<p><a href="https://apidock.com/ruby/Kernel/sprintf" target="_blank" rel="noopener">sprintf</a><br><a href="https://ruby-doc.org/core-2.6.5/Kernel.html" target="_blank" rel="noopener">Kernel</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Ruby-and-Rails-%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/" rel="tag"><i class="fa fa-tag"></i> Ruby and Rails 的二三事</a>
+              <a href="/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag"><i class="fa fa-tag"></i> 11th鐵人賽</a>
+              <a href="/tags/Ruby/" rel="tag"><i class="fa fa-tag"></i> Ruby</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/30/spring-and-spring-stop/" rel="next" title="Day18 鐵道裡的春天">
+                  <i class="fa fa-chevron-left"></i> Day18 鐵道裡的春天
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/10/30/event-listener/" rel="prev" title="從 Ruby 看 JS 的 事件監聽機制">
+                  從 Ruby 看 JS 的 事件監聽機制 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">%</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sprintf-args-public"><span class="nav-number">2.</span> <span class="nav-text">sprintf(*args) public</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Chris Chiu"
+    src="/uploads/avatar.png">
+  <p class="site-author-name" itemprop="name">Chris Chiu</p>
+  <div class="site-description" itemprop="description">Fake it till you make it.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hungyichiu" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;hungyichiu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hungyichiu@gmail.com" title="E-Mail &amp;rarr; mailto:hungyichiu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hungyi.chiu.1" title="FB Page &amp;rarr; https:&#x2F;&#x2F;www.facebook.com&#x2F;hungyi.chiu.1" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chris Chiu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-hungyichiu-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://chrischiu.site/2019/10/30/sprintf/",
+            identifier: "2019/10/30/sprintf/",
+            title: "Day19 \"%\"和 \"sprintf\" in Ruby?"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-hungyichiu-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+</body>
+</html>

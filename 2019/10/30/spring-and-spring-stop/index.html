@@ -52,17 +52,18 @@
   };
 </script>
 
-  <meta name="description" content="Fake it till you make it.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="All Tags">
-<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;tags&#x2F;index.html">
+  <meta name="description" content="每次在建立新的專案的時候，終端機最後一段都會出現： 123  run  bundle exec spring binstub --all* bin&#x2F;rake: Spring inserted* bin&#x2F;rails: Spring inserted  又或者，常常在clone一個專案下來時：在執行db:migrate 或是 bundle install指令時卡住;通常這時候，只要在終端機輸入spri">
+<meta name="keywords" content="Ruby and Rails 的二三事,11th鐵人賽,Rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day18 鐵道裡的春天">
+<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;2019&#x2F;10&#x2F;30&#x2F;spring-and-spring-stop&#x2F;index.html">
 <meta property="og:site_name" content="轉職之路，不由分說">
-<meta property="og:description" content="Fake it till you make it.">
+<meta property="og:description" content="每次在建立新的專案的時候，終端機最後一段都會出現： 123  run  bundle exec spring binstub --all* bin&#x2F;rake: Spring inserted* bin&#x2F;rails: Spring inserted  又或者，常常在clone一個專案下來時：在執行db:migrate 或是 bundle install指令時卡住;通常這時候，只要在終端機輸入spri">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-10-30T08:56:35.079Z">
+<meta property="og:updated_time" content="2019-10-30T09:03:41.074Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://chrischiu.site/tags/">
+<link rel="canonical" href="https://chrischiu.site/2019/10/30/spring-and-spring-stop/">
 
 
 <script id="page-configurations">
@@ -70,14 +71,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
-    isPage: true,
+    isPost: true,
+    isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>All Tags | 轉職之路，不由分說
-  </title>
+  <title>Day18 鐵道裡的春天 | 轉職之路，不由分說</title>
   
 
 
@@ -205,52 +205,128 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
   <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="zh-tw">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/spring-and-spring-stop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
       <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Day18 鐵道裡的春天
+        </h2>
 
-<h2 class="post-title" itemprop="name headline">All Tags
-</h2>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
 
-<div class="post-meta">
+              <time title="Created: 2019-10-30 17:03:03 / Modified: 17:03:41" itemprop="dateCreated datePublished" datetime="2019-10-30T17:03:03+08:00">2019-10-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/10/30/spring-and-spring-stop/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/spring-and-spring-stop/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 
-</div>
+        </div>
+      </header>
 
-</header>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              6 tags in total
+        <p>每次在建立新的專案的時候，終端機最後一段都會出現：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  run  bundle exec spring binstub --all</span><br><span class="line">* bin/<span class="symbol">rake:</span> Spring inserted</span><br><span class="line">* bin/<span class="symbol">rails:</span> Spring inserted</span><br></pre></td></tr></table></figure>
+
+<p>又或者，常常在clone一個專案下來時：在執行db:migrate 或是 bundle install指令時卡住;<br>通常這時候，只要在終端機輸入<code>spring stop</code>，然後再重新執行前述指令，一切就能正常執行了。</p>
+<h2 id="Spring-到底是什麼？"><a href="#Spring-到底是什麼？" class="headerlink" title="Spring 到底是什麼？"></a>Spring 到底是什麼？</h2><p>根據官方文件記載如下：</p>
+<p>Spring 是在 Ruby on Rails 4.1 版時才加入<strong>應用程式預加載器</strong></p>
+<blockquote>
+<p>Spring 會預加載你的 Rails 應用程式。保持應用程式在背景執行，如此一來在執行 Rails 命令時：如跑測試、rake、migrate 時，不用每次都重啟 Rails 應用程式，加速你的開發流程。</p>
+</blockquote>
+<p>總而言之，就是讓開發人員能夠在寫code的時候，即時地在頁面上看到修改的成果。<br>真的是很貼心的設計呢！</p>
+<p>打開你的Gemfile會看到，當你建立一個新的專案時，spring 已經被預設放在開發環境(development)裡了，<br>所以你可以直接執行<code>bundle</code>就可以啦！</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ...略...</span></span><br><span class="line">group <span class="symbol">:development</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Access an interactive console on exception pages or by calling 'console' anywhere in the code.</span></span><br><span class="line">  gem <span class="string">'web-console'</span>, <span class="string">'&gt;= 3.3.0'</span></span><br><span class="line">  gem <span class="string">'listen'</span>, <span class="string">'&gt;= 3.0.5'</span>, <span class="string">'&lt; 3.2'</span></span><br><span class="line">  <span class="comment"># Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring</span></span><br><span class="line">  gem <span class="string">'spring'</span></span><br><span class="line">  gem <span class="string">'spring-watcher-listen'</span>, <span class="string">'~&gt; 2.0.0'</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment"># ...略...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Spring-的特色"><a href="#Spring-的特色" class="headerlink" title="Spring 的特色"></a>Spring 的特色</h2><p>那 Spring 有什麼特色呢？這次我們換來看看github上的資料吧！</p>
+<ul>
+<li>Totally automatic; no need to explicitly start and stop the background process</li>
+<li>Reloads your application code on each run</li>
+<li>Restarts your application when configs / initializers / gem dependencies are changed</li>
+</ul>
+<p>比較需要注意的是第三點：<br>雖然Spring會預先幫你載入專案內所有的東西，並且動態的讀取你寫入的程式碼，<br>但是當你修改是像設定檔之類的東西，就需要重新啟動server才有用。</p>
+<h2 id="如何使用-Spring"><a href="#如何使用-Spring" class="headerlink" title="如何使用 Spring"></a>如何使用 Spring</h2><p>姆…這個部分，就請大家直接參考Spring頁面上的內容，<br>自己動手做一次吧！</p>
+<p><a href="https://github.com/rails/spring/blob/master/README.md" target="_blank" rel="noopener">Spring</a><br><a href="https://rails.ruby.tw/4_1_release_notes.html" target="_blank" rel="noopener">Ruby on Rails 4.1 發佈記</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Ruby-and-Rails-%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/" rel="tag"><i class="fa fa-tag"></i> Ruby and Rails 的二三事</a>
+              <a href="/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag"><i class="fa fa-tag"></i> 11th鐵人賽</a>
+              <a href="/tags/Rails/" rel="tag"><i class="fa fa-tag"></i> Rails</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/30/search-from/" rel="next" title="Day17  如何實作搜索表單">
+                  <i class="fa fa-chevron-left"></i> Day17  如何實作搜索表單
+                </a>
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/" style="font-size: 30px; color: #111">11th鐵人賽</a> <a href="/tags/Javascript/" style="font-size: 12px; color: #ccc">Javascript</a> <a href="/tags/Note/" style="font-size: 12px; color: #ccc">Note</a> <a href="/tags/Rails/" style="font-size: 18px; color: #8e8e8e">Rails</a> <a href="/tags/Ruby/" style="font-size: 24px; color: #4f4f4f">Ruby</a> <a href="/tags/Ruby-and-Rails-%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/" style="font-size: 30px; color: #111">Ruby and Rails 的二三事</a>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/10/30/sprintf/" rel="prev" title="Day19 "%"和 "sprintf" in Ruby?">
+                  Day19 "%"和 "sprintf" in Ruby? <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
-        
-      </div>
-      
-      
-      
-    </div>
+      </footer>
     
+  </article>
+  
+  
+  
 
-    
-    
-    
   </div>
 
 
@@ -287,6 +363,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-到底是什麼？"><span class="nav-number">1.</span> <span class="nav-text">Spring 到底是什麼？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-的特色"><span class="nav-number">2.</span> <span class="nav-text">Spring 的特色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何使用-Spring"><span class="nav-number">3.</span> <span class="nav-text">如何使用 Spring</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -424,9 +501,9 @@
       DISQUS.reset({
         reload: true,
         config: {page: {
-            url: "https://chrischiu.site/tags/index.html",
-            identifier: "tags/index.html",
-            title: "All Tags"
+            url: "https://chrischiu.site/2019/10/30/spring-and-spring-stop/",
+            identifier: "2019/10/30/spring-and-spring-stop/",
+            title: "Day18 鐵道裡的春天"
           }
         }
       });
