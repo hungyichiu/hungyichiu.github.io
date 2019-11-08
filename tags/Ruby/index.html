@@ -28,7 +28,7 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
@@ -197,6 +197,7 @@
     <span>0%</span>
   </div>
   <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -235,7 +236,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/event-listener/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/event-listener/" itemprop="url">
             <span itemprop="name">從 Ruby 看 JS 的 事件監聽機制</span>
           </a>
       </h3>
@@ -255,7 +256,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/sprintf/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/sprintf/" itemprop="url">
             <span itemprop="name">Day19 "%"和 "sprintf" in Ruby?</span>
           </a>
       </h3>
@@ -275,7 +276,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/boolean-operator/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/boolean-operator/" itemprop="url">
             <span itemprop="name">Day16 && / and / | | / or</span>
           </a>
       </h3>
@@ -295,7 +296,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/case-when/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/case-when/" itemprop="url">
             <span itemprop="name">Day10 其實我不懂Case...When</span>
           </a>
       </h3>
@@ -315,7 +316,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/self-in-ruby/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/self-in-ruby/" itemprop="url">
             <span itemprop="name">Day07  Ruby   中的 self 到底是？</span>
           </a>
       </h3>
@@ -335,7 +336,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/class-and-module/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/class-and-module/" itemprop="url">
             <span itemprop="name">Day06  Class(類別) 和 Ｍodule(模組) 的不同</span>
           </a>
       </h3>
@@ -355,7 +356,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/method-and-block/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/method-and-block/" itemprop="url">
             <span itemprop="name">Day05   稍微介紹一下：Method 和 Block</span>
           </a>
       </h3>
@@ -375,7 +376,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/array-and-hash/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/array-and-hash/" itemprop="url">
             <span itemprop="name">Day03   Array and Hash</span>
           </a>
       </h3>
@@ -395,7 +396,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/flowcontrol-loop-iteration/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/flowcontrol-loop-iteration/" itemprop="url">
             <span itemprop="name">Day02  流程控制、迴圈與迭代</span>
           </a>
       </h3>
@@ -415,7 +416,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/variables-and-constants/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/variables-and-constants/" itemprop="url">
             <span itemprop="name">Day01 變數與常數</span>
           </a>
       </h3>
@@ -548,12 +549,14 @@
   </div>
 
   
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
 

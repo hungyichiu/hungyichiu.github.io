@@ -52,16 +52,18 @@
   };
 </script>
 
-  <meta name="description" content="Fake it till you make it.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="轉職之路，不由分說">
-<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;tags&#x2F;11th%E9%90%B5%E4%BA%BA%E8%B3%BD&#x2F;index.html">
+  <meta name="description" content="昨天稍微介紹了一下Rails的主角：Routes 和 MVC， 今天就稍微解釋一下 REST 和 RESTful 吧！  關於 REST REST的全文是：REpresentational State Transfer，是由Roy Thomas Fielding博士於2000年所提出的一種軟體架構風格。  通常會透過使用HTTP協議（在技術上也可以使用其他協議）來實現。  REST本身不是協議，它">
+<meta name="keywords" content="Ruby and Rails 的二三事,11th鐵人賽,Rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day09 REST 和 RESTful">
+<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;2019&#x2F;10&#x2F;rest-and-restful&#x2F;index.html">
 <meta property="og:site_name" content="轉職之路，不由分說">
-<meta property="og:description" content="Fake it till you make it.">
+<meta property="og:description" content="昨天稍微介紹了一下Rails的主角：Routes 和 MVC， 今天就稍微解釋一下 REST 和 RESTful 吧！  關於 REST REST的全文是：REpresentational State Transfer，是由Roy Thomas Fielding博士於2000年所提出的一種軟體架構風格。  通常會透過使用HTTP協議（在技術上也可以使用其他協議）來實現。  REST本身不是協議，它">
 <meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-10-30T08:39:25.897Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://chrischiu.site/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/">
+<link rel="canonical" href="https://chrischiu.site/2019/10/rest-and-restful/">
 
 
 <script id="page-configurations">
@@ -69,13 +71,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>Tag: 11th鐵人賽 | 轉職之路，不由分說</title>
+  <title>Day09 REST 和 RESTful | 轉職之路，不由分說</title>
   
 
 
@@ -208,237 +210,199 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">11th鐵人賽
-          <small>Tag</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/rest-and-restful/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Day09 REST 和 RESTful
         </h2>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-30 16:37:26 / Modified: 16:39:25" itemprop="dateCreated datePublished" datetime="2019-10-30T16:37:26+08:00">2019-10-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/10/rest-and-restful/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/rest-and-restful/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h2 class="collection-header">2019</h2>
-    </div>
+        <p>昨天稍微介紹了一下Rails的主角：Routes 和 MVC，</p>
+<p>今天就稍微解釋一下 REST 和 RESTful 吧！</p>
+<hr>
+<h2 id="關於-REST"><a href="#關於-REST" class="headerlink" title="關於 REST"></a>關於 REST</h2><ul>
+<li><p>REST的全文是：REpresentational State Transfer，<br>是由Roy Thomas Fielding博士於2000年所提出的一種軟體架構風格。</p>
+</li>
+<li><p>通常會透過使用HTTP協議（在技術上也可以使用其他協議）來實現。</p>
+</li>
+<li><p>REST本身不是協議，它只是一組慣例，遵循這些慣例可以使<br>不同的Web的應用程序或API之間維持資源(resources)命名的簡單性和一致性。</p>
+</li>
+<li><p>透過資源命名的簡單性和一致性，讓不同軟體/程式在網路（例如網際網路）<br>中互相傳遞資訊能更加便利。</p>
+<a id="more"></a>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T17:04:13+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/sprintf/" itemprop="url">
-            <span itemprop="name">Day19 "%"和 "sprintf" in Ruby?</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T17:03:03+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/spring-and-spring-stop/" itemprop="url">
-            <span itemprop="name">Day18 鐵道裡的春天</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T17:01:22+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/search-from/" itemprop="url">
-            <span itemprop="name">Day17  如何實作搜索表單</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:59:30+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/boolean-operator/" itemprop="url">
-            <span itemprop="name">Day16 && / and / | | / or</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:57:27+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/associations/" itemprop="url">
-            <span itemprop="name">Day15 Model 之間的關聯</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:48:40+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/active-record/" itemprop="url">
-            <span itemprop="name">Day14 Active Record？可以說中文嗎？</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:46:40+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/form-for-and-form-with/" itemprop="url">
-            <span itemprop="name">Day13 風馮諷form</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:43:54+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/enum-with-column/" itemprop="url">
-            <span itemprop="name">Day12 利用Enum設定欄位資料</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:42:34+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/gemfile/" itemprop="url">
-            <span itemprop="name">Day11 Gemfile</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:40:11+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/case-when/" itemprop="url">
-            <span itemprop="name">Day10 其實我不懂Case...When</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
+</li>
+</ul>
+<hr>
+<h1 id="關於-RESTful"><a href="#關於-RESTful" class="headerlink" title="關於 RESTful"></a>關於 RESTful</h1><p>符合REST設計架構，並朝這個理念而設計出來的系統，比如說 Ruby on Rails，就可以被稱為是RESTful的系統，表示系統在設計上遵循著 REST 的理念與原則。</p>
+<blockquote>
+<p>在RESTful架構中，標準HTTP方法(Verb)與統一資源標識符（URI）結合使用，<br> 以在客戶端和服務器之間傳遞請求和響應。<br> 每個URI描述一個獨立的操作，並包含滿足請求所需的所有信息(資料)。</p>
+</blockquote>
+<p>還記得昨天的那張圖嗎？沒關係，看下面的表格也可以</p>
+<table>
+<thead>
+<tr>
+<th>Verb</th>
+<th>URI</th>
+<th>Controller#action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GET</td>
+<td>/products</td>
+<td>products/index</td>
+</tr>
+<tr>
+<td>POST</td>
+<td>/products</td>
+<td>products/create</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/products/new</td>
+<td>products/new</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/products/:id/edit</td>
+<td>products/edit</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>/products/:id</td>
+<td>products/show</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>/products/:id</td>
+<td>products/update</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>/products/:id</td>
+<td>products/update</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>/products/:id</td>
+<td>products/destroy</td>
+</tr>
+</tbody></table>
+<p>透過VERB 和 URI 的組合，每個組合要對資料所進行的操作被清楚的區隔開來。</p>
+<hr>
+<p>同場加映：</p>
+<p>補上自己在查資料時，熊熊看不懂的<strong>安全方法</strong>和<strong>冪等方法</strong>，算是幫自己做個紀錄：</p>
+<p>safe &amp; idempotent，這兩個是HTTP狀態描述的專有名詞。</p>
+<ul>
+<li>「safe」是指該操作不會改變原本的資源狀態，並且同樣的結果是可以被快取（Cache）的。例如: 查看訂單是不會改變訂單本身紀錄。</li>
+</ul>
+<ul>
+<li>「idempotent」是指該操作不管做1遍、2遍或多遍，都會得到同樣的資源狀態結果。</li>
+</ul>
+<p>GET 是 安全方法同時也是冪等方法<br>PUT 和 DELETE 是冪等方法</p>
+<hr>
+<p>以上，就是現階段，我對REST和RESTful的了解。<br>鐵人賽，我們明天再見。</p>
+<p>參考資料：<br><a href="https://medium.com/@cindyliu923/%E4%BB%80%E9%BA%BC%E6%98%AF-rest-restful-7667b3054371" target="_blank" rel="noopener">什麼是 REST? RESTful?</a><br><a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2" target="_blank" rel="noopener">REST - Wiki</a><br><a href="https://blog.toright.com/posts/725/representational-state-transfer-%E8%BB%9F%E9%AB%94%E6%9E%B6%E6%A7%8B%E9%A2%A8%E6%A0%BC%E4%BB%8B%E7%B4%B9-part-i-%E5%BE%9E%E4%BA%86%E8%A7%A3-rest-%E5%88%B0%E8%A8%AD%E8%A8%88-restful%EF%BC%81.html" target="_blank" rel="noopener">淺談 REST 軟體架構風格</a><br><a href="https://notfalse.net/43/http-request-method" target="_blank" rel="noopener">HTTP 請求方法 (Request Method)</a><br><a href="https://blog.csdn.net/qq_27376871/article/details/78222961" target="_blank" rel="noopener">HTTP方法的安全性和幂等性</a></p>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Ruby-and-Rails-%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/" rel="tag"><i class="fa fa-tag"></i> Ruby and Rails 的二三事</a>
+              <a href="/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag"><i class="fa fa-tag"></i> 11th鐵人賽</a>
+              <a href="/tags/Rails/" rel="tag"><i class="fa fa-tag"></i> Rails</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/rails-routes-mvc/" rel="next" title="Day08 Rails (Routes 和 MVC)">
+                  <i class="fa fa-chevron-left"></i> Day08 Rails (Routes 和 MVC)
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/10/case-when/" rel="prev" title="Day10 其實我不懂Case...When">
+                  Day10 其實我不懂Case...When <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/page/2/">2</a><a class="extend next" rel="next" href="/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
 
 
           </div>
           
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
         </div>
           
@@ -463,6 +427,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#關於-REST"><span class="nav-number">1.</span> <span class="nav-text">關於 REST</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#關於-RESTful"><span class="nav-number"></span> <span class="nav-text">關於 RESTful</span></a></div>
       </div>
       <!--/noindex-->
 
@@ -595,6 +560,27 @@
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://chrischiu.site/2019/10/rest-and-restful/",
+            identifier: "2019/10/rest-and-restful/",
+            title: "Day09 REST 和 RESTful"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-hungyichiu-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
 </script>
 
 </body>

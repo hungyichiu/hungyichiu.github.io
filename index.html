@@ -28,7 +28,7 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
@@ -197,6 +197,7 @@
     <span>0%</span>
   </div>
   <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -212,7 +213,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/event-listener/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/event-listener/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -226,7 +227,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/event-listener/" class="post-title-link" itemprop="url">從 Ruby 看 JS 的 事件監聽機制</a>
+            <a href="/2019/10/event-listener/" class="post-title-link" itemprop="url">從 Ruby 看 JS 的 事件監聽機制</a>
         </h2>
 
         <div class="post-meta">
@@ -249,8 +250,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/event-listener/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/event-listener/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/event-listener/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/event-listener/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -268,7 +269,7 @@
           <p>一直都被JS的事件監聽機制弄得暈頭轉向的，<br>好不容易有機會有這個範例，看不懂也要先紀錄下來啊XDD</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/event-listener/#more" rel="contents">
+              <a class="btn" href="/2019/10/event-listener/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -292,7 +293,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/sprintf/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/sprintf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -306,7 +307,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/sprintf/" class="post-title-link" itemprop="url">Day19 "%"和 "sprintf" in Ruby?</a>
+            <a href="/2019/10/sprintf/" class="post-title-link" itemprop="url">Day19 "%"和 "sprintf" in Ruby?</a>
         </h2>
 
         <div class="post-meta">
@@ -329,8 +330,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/sprintf/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/sprintf/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/sprintf/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/sprintf/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -352,7 +353,7 @@
 </blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/sprintf/#more" rel="contents">
+              <a class="btn" href="/2019/10/sprintf/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -376,7 +377,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/spring-and-spring-stop/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/spring-and-spring-stop/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -390,7 +391,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/spring-and-spring-stop/" class="post-title-link" itemprop="url">Day18 鐵道裡的春天</a>
+            <a href="/2019/10/spring-and-spring-stop/" class="post-title-link" itemprop="url">Day18 鐵道裡的春天</a>
         </h2>
 
         <div class="post-meta">
@@ -399,10 +400,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-10-30 17:03:03 / Modified: 17:03:41" itemprop="dateCreated datePublished" datetime="2019-10-30T17:03:03+08:00">2019-10-30</time>
+              <time title="Created: 2019-10-30 17:03:03" itemprop="dateCreated datePublished" datetime="2019-10-30T17:03:03+08:00">2019-10-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-08 10:40:40" itemprop="dateModified" datetime="2019-11-08T10:40:40+08:00">2019-11-08</time>
+              </span>
 
           
   
@@ -413,8 +420,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/spring-and-spring-stop/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/spring-and-spring-stop/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/spring-and-spring-stop/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/spring-and-spring-stop/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -433,25 +440,15 @@
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  run  bundle exec spring binstub --all</span><br><span class="line">* bin/<span class="symbol">rake:</span> Spring inserted</span><br><span class="line">* bin/<span class="symbol">rails:</span> Spring inserted</span><br></pre></td></tr></table></figure>
 
 <p>又或者，常常在clone一個專案下來時：在執行db:migrate 或是 bundle install指令時卡住;<br>通常這時候，只要在終端機輸入<code>spring stop</code>，然後再重新執行前述指令，一切就能正常執行了。</p>
-<h2 id="Spring-到底是什麼？"><a href="#Spring-到底是什麼？" class="headerlink" title="Spring 到底是什麼？"></a>Spring 到底是什麼？</h2><p>根據官方文件記載如下：</p>
-<p>Spring 是在 Ruby on Rails 4.1 版時才加入<strong>應用程式預加載器</strong></p>
-<blockquote>
-<p>Spring 會預加載你的 Rails 應用程式。保持應用程式在背景執行，如此一來在執行 Rails 命令時：如跑測試、rake、migrate 時，不用每次都重啟 Rails 應用程式，加速你的開發流程。</p>
-</blockquote>
-<p>總而言之，就是讓開發人員能夠在寫code的時候，即時地在頁面上看到修改的成果。<br>真的是很貼心的設計呢！</p>
-<p>打開你的Gemfile會看到，當你建立一個新的專案時，spring 已經被預設放在開發環境(development)裡了，<br>所以你可以直接執行<code>bundle</code>就可以啦！</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ...略...</span></span><br><span class="line">group <span class="symbol">:development</span> <span class="keyword">do</span></span><br><span class="line">  <span class="comment"># Access an interactive console on exception pages or by calling 'console' anywhere in the code.</span></span><br><span class="line">  gem <span class="string">'web-console'</span>, <span class="string">'&gt;= 3.3.0'</span></span><br><span class="line">  gem <span class="string">'listen'</span>, <span class="string">'&gt;= 3.0.5'</span>, <span class="string">'&lt; 3.2'</span></span><br><span class="line">  <span class="comment"># Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring</span></span><br><span class="line">  gem <span class="string">'spring'</span></span><br><span class="line">  gem <span class="string">'spring-watcher-listen'</span>, <span class="string">'~&gt; 2.0.0'</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment"># ...略...</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Spring-的特色"><a href="#Spring-的特色" class="headerlink" title="Spring 的特色"></a>Spring 的特色</h2><p>那 Spring 有什麼特色呢？這次我們換來看看github上的資料吧！</p>
-<ul>
-<li>Totally automatic; no need to explicitly start and stop the background process</li>
-<li>Reloads your application code on each run</li>
-<li>Restarts your application when configs / initializers / gem dependencies are changed</li>
-</ul>
-<p>比較需要注意的是第三點：<br>雖然Spring會預先幫你載入專案內所有的東西，並且動態的讀取你寫入的程式碼，<br>但是當你修改是像設定檔之類的東西，就需要重新啟動server才有用。</p>
-<h2 id="如何使用-Spring"><a href="#如何使用-Spring" class="headerlink" title="如何使用 Spring"></a>如何使用 Spring</h2><p>姆…這個部分，就請大家直接參考Spring頁面上的內容，<br>自己動手做一次吧！</p>
-<p><a href="https://github.com/rails/spring/blob/master/README.md" target="_blank" rel="noopener">Spring</a><br><a href="https://rails.ruby.tw/4_1_release_notes.html" target="_blank" rel="noopener">Ruby on Rails 4.1 發佈記</a></p>
-
+<h2 id="Spring-到底是什麼？"><a href="#Spring-到底是什麼？" class="headerlink" title="Spring 到底是什麼？"></a>Spring 到底是什麼？</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/spring-and-spring-stop/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -470,7 +467,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/search-from/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/search-from/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -484,7 +481,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/search-from/" class="post-title-link" itemprop="url">Day17  如何實作搜索表單</a>
+            <a href="/2019/10/search-from/" class="post-title-link" itemprop="url">Day17  如何實作搜索表單</a>
         </h2>
 
         <div class="post-meta">
@@ -507,8 +504,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/search-from/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/search-from/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/search-from/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/search-from/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -532,7 +529,7 @@
 </ul>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/search-from/#more" rel="contents">
+              <a class="btn" href="/2019/10/search-from/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -556,7 +553,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/boolean-operator/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/boolean-operator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -570,7 +567,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/boolean-operator/" class="post-title-link" itemprop="url">Day16 && / and / | | / or</a>
+            <a href="/2019/10/boolean-operator/" class="post-title-link" itemprop="url">Day16 && / and / | | / or</a>
         </h2>
 
         <div class="post-meta">
@@ -593,8 +590,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/boolean-operator/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/boolean-operator/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/boolean-operator/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/boolean-operator/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -616,7 +613,7 @@
 <h2 id="待誌姆洗憨郎所想A架尼甘單"><a href="#待誌姆洗憨郎所想A架尼甘單" class="headerlink" title="待誌姆洗憨郎所想A架尼甘單!!"></a>待誌姆洗憨郎所想A架尼甘單!!</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/boolean-operator/#more" rel="contents">
+              <a class="btn" href="/2019/10/boolean-operator/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -640,7 +637,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/associations/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/associations/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -654,7 +651,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/associations/" class="post-title-link" itemprop="url">Day15 Model 之間的關聯</a>
+            <a href="/2019/10/associations/" class="post-title-link" itemprop="url">Day15 Model 之間的關聯</a>
         </h2>
 
         <div class="post-meta">
@@ -677,8 +674,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/associations/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/associations/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/associations/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/associations/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -704,7 +701,7 @@
 <hr>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/associations/#more" rel="contents">
+              <a class="btn" href="/2019/10/associations/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -728,7 +725,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/active-record/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/active-record/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -742,7 +739,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/active-record/" class="post-title-link" itemprop="url">Day14 Active Record？可以說中文嗎？</a>
+            <a href="/2019/10/active-record/" class="post-title-link" itemprop="url">Day14 Active Record？可以說中文嗎？</a>
         </h2>
 
         <div class="post-meta">
@@ -765,8 +762,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/active-record/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/active-record/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/active-record/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/active-record/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -791,7 +788,7 @@
 <li>ORM框架 的主要特性是，讓我們可以使用程式語言(Ruby)去操作資料庫語言(SQL)。
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/active-record/#more" rel="contents">
+              <a class="btn" href="/2019/10/active-record/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -815,7 +812,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/form-for-and-form-with/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/form-for-and-form-with/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -829,7 +826,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/form-for-and-form-with/" class="post-title-link" itemprop="url">Day13 風馮諷form</a>
+            <a href="/2019/10/form-for-and-form-with/" class="post-title-link" itemprop="url">Day13 風馮諷form</a>
         </h2>
 
         <div class="post-meta">
@@ -838,10 +835,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-10-30 16:46:40 / Modified: 16:47:48" itemprop="dateCreated datePublished" datetime="2019-10-30T16:46:40+08:00">2019-10-30</time>
+              <time title="Created: 2019-10-30 16:46:40" itemprop="dateCreated datePublished" datetime="2019-10-30T16:46:40+08:00">2019-10-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-08 10:42:09" itemprop="dateModified" datetime="2019-11-08T10:42:09+08:00">2019-11-08</time>
+              </span>
 
           
   
@@ -852,8 +855,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/form-for-and-form-with/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/form-for-and-form-with/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/form-for-and-form-with/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/form-for-and-form-with/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -876,7 +879,7 @@
 <p>Rails 會自動幫你翻譯長出下面這串東西：</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/form-for-and-form-with/#more" rel="contents">
+              <a class="btn" href="/2019/10/form-for-and-form-with/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -900,7 +903,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/enum-with-column/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/enum-with-column/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -914,7 +917,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/enum-with-column/" class="post-title-link" itemprop="url">Day12 利用Enum設定欄位資料</a>
+            <a href="/2019/10/enum-with-column/" class="post-title-link" itemprop="url">Day12 利用Enum設定欄位資料</a>
         </h2>
 
         <div class="post-meta">
@@ -937,8 +940,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/enum-with-column/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/enum-with-column/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/enum-with-column/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/enum-with-column/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -962,7 +965,7 @@
 <p>對新手來說，當我們想建立一個 Model User，而且希望裡面有名字(name)和角色(role)時：<br>名字(name)不用說，當然是用字串來存放，那角色(role)呢？<br>如果有現在有角色總共可以分成： admin, teacher, student；</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/enum-with-column/#more" rel="contents">
+              <a class="btn" href="/2019/10/enum-with-column/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -986,7 +989,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-tw">
-    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/30/gemfile/">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/gemfile/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/avatar.png">
@@ -1000,7 +1003,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2019/10/30/gemfile/" class="post-title-link" itemprop="url">Day11 Gemfile</a>
+            <a href="/2019/10/gemfile/" class="post-title-link" itemprop="url">Day11 Gemfile</a>
         </h2>
 
         <div class="post-meta">
@@ -1023,8 +1026,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2019/10/30/gemfile/#comments" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/30/gemfile/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2019/10/gemfile/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/gemfile/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1044,7 +1047,7 @@
 <p>在專案裡的Gemfile大概是長這個樣子的：(以rails 5.2.3為例)</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/10/30/gemfile/#more" rel="contents">
+              <a class="btn" href="/2019/10/gemfile/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1188,12 +1191,14 @@
   </div>
 
   
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
 

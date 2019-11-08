@@ -28,7 +28,7 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
@@ -197,6 +197,7 @@
     <span>0%</span>
   </div>
   <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
     <main class="main">
@@ -233,7 +234,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/event-listener/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/event-listener/" itemprop="url">
             <span itemprop="name">從 Ruby 看 JS 的 事件監聽機制</span>
           </a>
       </h3>
@@ -253,7 +254,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/sprintf/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/sprintf/" itemprop="url">
             <span itemprop="name">Day19 "%"和 "sprintf" in Ruby?</span>
           </a>
       </h3>
@@ -273,7 +274,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/spring-and-spring-stop/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/spring-and-spring-stop/" itemprop="url">
             <span itemprop="name">Day18 鐵道裡的春天</span>
           </a>
       </h3>
@@ -293,7 +294,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/search-from/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/search-from/" itemprop="url">
             <span itemprop="name">Day17  如何實作搜索表單</span>
           </a>
       </h3>
@@ -313,7 +314,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/boolean-operator/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/boolean-operator/" itemprop="url">
             <span itemprop="name">Day16 && / and / | | / or</span>
           </a>
       </h3>
@@ -333,7 +334,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/associations/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/associations/" itemprop="url">
             <span itemprop="name">Day15 Model 之間的關聯</span>
           </a>
       </h3>
@@ -353,7 +354,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/active-record/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/active-record/" itemprop="url">
             <span itemprop="name">Day14 Active Record？可以說中文嗎？</span>
           </a>
       </h3>
@@ -373,7 +374,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/form-for-and-form-with/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/form-for-and-form-with/" itemprop="url">
             <span itemprop="name">Day13 風馮諷form</span>
           </a>
       </h3>
@@ -393,7 +394,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/enum-with-column/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/enum-with-column/" itemprop="url">
             <span itemprop="name">Day12 利用Enum設定欄位資料</span>
           </a>
       </h3>
@@ -413,7 +414,7 @@
       </div>
 
       <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/30/gemfile/" itemprop="url">
+          <a class="post-title-link" href="/2019/10/gemfile/" itemprop="url">
             <span itemprop="name">Day11 Gemfile</span>
           </a>
       </h3>
@@ -550,12 +551,14 @@
   </div>
 
   
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
 <script src="/js/schemes/pisces.js"></script>
-<script src="/js/next-boot.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
 
 
 

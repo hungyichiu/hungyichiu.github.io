@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: 'Copy',
+      copy_success: 'Copied',
+      copy_failure: 'Copy failed'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Method前面一直提到方法，那麼到底在Ruby裡，方法(Method)是怎麼被定義的呢？ 下面是，在Ruby裡，我們定義方法和呼叫方法的樣子： 123def 方法名稱(參數個數隨意)end   呼叫方法的時候，() 是可以省略的：123456def say_hello_to(someone)  puts &quot;Hi, #&amp;#123;someone&amp;#125;&quot;end say_hello_to(&quot;Di">
+<meta name="keywords" content="Ruby and Rails 的二三事,11th鐵人賽,Ruby">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day05   稍微介紹一下：Method 和 Block">
+<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;2019&#x2F;10&#x2F;method-and-block&#x2F;index.html">
+<meta property="og:site_name" content="轉職之路，不由分說">
+<meta property="og:description" content="Method前面一直提到方法，那麼到底在Ruby裡，方法(Method)是怎麼被定義的呢？ 下面是，在Ruby裡，我們定義方法和呼叫方法的樣子： 123def 方法名稱(參數個數隨意)end   呼叫方法的時候，() 是可以省略的：123456def say_hello_to(someone)  puts &quot;Hi, #&amp;#123;someone&amp;#125;&quot;end say_hello_to(&quot;Di">
+<meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-10-30T08:30:44.150Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://chrischiu.site/2019/10/method-and-block/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Day05   稍微介紹一下：Method 和 Block | 轉職之路，不由分說</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">轉職之路，不由分說</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">菜鳥工程師的學習筆記</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/method-and-block/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Day05   稍微介紹一下：Method 和 Block
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-10-30 16:23:48 / Modified: 16:30:44" itemprop="dateCreated datePublished" datetime="2019-10-30T16:23:48+08:00">2019-10-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/10/method-and-block/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/method-and-block/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><p>前面一直提到方法，那麼到底在Ruby裡，方法(Method)是怎麼被定義的呢？</p>
+<p>下面是，在Ruby裡，我們定義方法和呼叫方法的樣子：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> 方法名稱<span class="params">(參數個數隨意)</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>呼叫方法的時候，() 是可以省略的：<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say_hello_to</span><span class="params">(someone)</span></span></span><br><span class="line">  puts <span class="string">"Hi, <span class="subst">#&#123;someone&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"> say_hello_to(<span class="string">"DinDin"</span>) <span class="comment"># "Hi, DinDin"</span></span><br><span class="line"> say_hello_to <span class="string">"LaLa"</span>    <span class="comment"># "Hi, LaLa"</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+</li>
+</ul>
+<hr>
+<h2 id="Method的一些觀念："><a href="#Method的一些觀念：" class="headerlink" title="Method的一些觀念："></a>Method的一些觀念：</h2><ul>
+<li>在定義方法的時後，可以先給他預設值：<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say_hi_to</span><span class="params">(some = <span class="string">"Vegeta"</span>)</span></span></span><br><span class="line">  puts <span class="string">" I'm <span class="subst">#&#123;some&#125;</span>"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">say_hi_to()       <span class="comment"># "I'm Vegeta"</span></span><br><span class="line">say_hi_to(<span class="string">"Goku"</span>) <span class="comment"># "I'm Goku"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<ul>
+<li>?和！也可以是方法的一部份</li>
+</ul>
+<p>方法名稱後面如果接上? ，通常我們預期他會回傳true or false;<br>當然你也可以惡搞：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">can_fly?</span><span class="params">(age = <span class="number">10</span>)</span></span></span><br><span class="line">    <span class="keyword">if</span> (age &lt;= <span class="number">10</span>)</span><br><span class="line">      <span class="comment">#true</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">"I can fly, cause I'm <span class="subst">#&#123;age&#125;</span>."</span> </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="comment">#false</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">"Oops,you're <span class="subst">#&#123;age&#125;</span>, that's why you can't fly."</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">p can_fly?</span><br><span class="line">=&gt; <span class="string">"I can fly, cause I'm 10."</span> </span><br><span class="line">p can_fly?(<span class="number">20</span>)</span><br><span class="line">=&gt; <span class="string">"Oops,you're 20, that's why you can't fly."</span></span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>Method後面接 ! ，表示會帶來副作用</li>
+</ul>
+<p>這邊我們用陣列的sort 和sort! 方法來做示範：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">list = [<span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">5</span>]</span><br><span class="line">p list.sort        <span class="comment"># [1, 2, 3, 5]</span></span><br><span class="line">p list             <span class="comment"># [3, 2, 1, 5]  </span></span><br><span class="line">p list.sort!       <span class="comment"># [1, 2, 3, 5]</span></span><br><span class="line">p list             <span class="comment"># [1, 2, 3, 5]</span></span><br></pre></td></tr></table></figure>
+<p>有看到嗎？ 當你對list使用了 sort! 方法， list就回不去了…<br><del>就像變了心的女友一樣(淚目</del>)~~</p>
+<hr>
+<h1 id="Block"><a href="#Block" class="headerlink" title="Block"></a>Block</h1><blockquote>
+<p>Block 不是物件<br>Block 不是參數</p>
+</blockquote>
+<p>Ruby裡大部分的東西都是物件， 而Block就是少數的例外。<br>其實在前面的部分Block 就已經出現過了:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a.each <span class="keyword">do</span> <span class="params">|i|</span></span><br><span class="line"> b &lt;&lt; i <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"> a.select &#123;<span class="params">|i|</span> i % <span class="number">2</span> == <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>上面在 each “方法後面” 的 do…end 和<br>select “方法後面” 的 { }，就是所謂的Block。</p>
+<p>會強調”方法後面”是因為：</p>
+<blockquote>
+<p>Block 是不能單獨存在的。<br>Block 只是附加在方法後面，等著被呼叫的一段程式碼。</p>
+</blockquote>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123; puts <span class="string">"這樣會出錯!!"</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">   puts <span class="string">"安捏馬港款"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+
+<hr>
+<h2 id="Block的一些觀念："><a href="#Block的一些觀念：" class="headerlink" title="Block的一些觀念："></a>Block的一些觀念：</h2><p>關於block的觀念，個人覺得看code最有感，所以…<br>廢話不多說 ，來看code吧！ ：）</p>
+<ul>
+<li>Block 需要透過 yield 來呼叫<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say_hello</span></span></span><br><span class="line">  puts <span class="string">%Q(say hello "method")</span></span><br><span class="line">  <span class="keyword">yield</span></span><br><span class="line">  puts <span class="string">%Q(back to say hello "method")</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">say_hello &#123;</span><br><span class="line">  puts <span class="string">%Q(say hello "block" with yield)</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># say hello "method"</span></span><br><span class="line"><span class="comment"># say hello "block" with yield</span></span><br><span class="line"><span class="comment"># back to say hello "method"</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>如果沒有yield，寫在Block裡面的東西，是不會有反應的:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">meow</span></span></span><br><span class="line">  puts <span class="string">"霹靂！霹靂！霹靂貓！！"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">meow &#123;</span><br><span class="line">  puts <span class="string">"You can't see me"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#"霹靂！霹靂！霹靂貓！！"</span></span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>yield 是可以傳遞參數的<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">way_hi4_din</span></span></span><br><span class="line">  <span class="keyword">yield</span> <span class="string">"什麼"</span>,<span class="string">"什麼"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">way_hi4_din &#123; <span class="params">|n, m|</span></span><br><span class="line">  puts <span class="string">%Q(婆婆，我要<span class="subst">#&#123;n&#125;</span>你打<span class="subst">#&#123;n&#125;</span>，這才是餵～)</span></span><br><span class="line">  puts <span class="string">%Q(不對，妳要<span class="subst">#&#123;m&#125;</span>我打<span class="subst">#&#123;m&#125;</span>，這叫做盯～)</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 婆婆，我要什麼你打什麼，這才是餵～</span></span><br><span class="line"><span class="comment"># 不對，妳要什麼我打什麼，這叫做盯～</span></span><br></pre></td></tr></table></figure>
+這麼生活化的例子，應該不需要我多做解釋了吧？</li>
+</ul>
+<hr>
+<ul>
+<li>block 會自動回傳最後的結果<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_pregnancy</span></span></span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">yield</span> (<span class="string">"||"</span>)</span><br><span class="line">    puts <span class="string">%Q(恭喜老爺！賀喜夫人！)</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    puts <span class="string">%Q(換個姿勢，再來一次！)</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">test_pregnancy &#123;<span class="params">|result|</span></span><br><span class="line">  result == <span class="string">"||"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恭喜老爺！賀喜夫人！</span></span><br></pre></td></tr></table></figure>
+下面這段程式碼是用來展示，參數傳遞的過程：<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">im_from</span><span class="params">(place)</span></span></span><br><span class="line">  puts <span class="string">"params passed from method im_from"</span></span><br><span class="line">  <span class="keyword">yield</span> place</span><br><span class="line">  puts <span class="string">"leaving im_from"</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">im_from(<span class="string">"Namek"</span>) &#123; <span class="params">|place|</span></span><br><span class="line">  puts <span class="string">"params pass in to block "</span></span><br><span class="line">  puts <span class="string">%Q(I'm from <span class="subst">#&#123;place&#125;</span>.)</span></span><br><span class="line">  puts <span class="string">"prepare go back to method "</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># params passed from method im_from</span></span><br><span class="line"><span class="comment"># params pass in to block</span></span><br><span class="line"><span class="comment"># I'm from Namek.</span></span><br><span class="line"><span class="comment"># prepare go back to method</span></span><br><span class="line"><span class="comment"># leaving im_from</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="Proc"><a href="#Proc" class="headerlink" title="Proc"></a>Proc</h2><p>但是其實，在Ruby裡面，還是有方法可以將Block物件化的；<br>那就是Proc，用起來的手感大概是像這樣：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">shoot = Proc.new &#123;<span class="params">|name|</span> p <span class="string">"<span class="subst">#&#123;name&#125;</span>  Shooooot!!!"</span>&#125;</span><br><span class="line"></span><br><span class="line">shoot[<span class="string">"Neo Armstrong Cyclone Jet Armstrong Cannon"</span>]</span><br><span class="line">shoot.(<span class="string">"Neo Armstrong Cyclone Jet Armstrong Cannon"</span>)</span><br><span class="line">shoot.===(<span class="string">"Neo Armstrong Cyclone Jet Armstrong Cannon"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#上面三種呼叫方式，都會得到下面的結果</span></span><br><span class="line"><span class="string">"Neo Armstrong Cyclone Jet Armstrong Cannon  Shooooot!!!"</span></span><br></pre></td></tr></table></figure>
+<p>嗯？又有奇怪的東西混進程式碼了嗎？<br>大概是我太累產生的錯覺吧…</p>
+<p> 鐵人賽，我們明天再會！</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Ruby-and-Rails-%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/" rel="tag"><i class="fa fa-tag"></i> Ruby and Rails 的二三事</a>
+              <a href="/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag"><i class="fa fa-tag"></i> 11th鐵人賽</a>
+              <a href="/tags/Ruby/" rel="tag"><i class="fa fa-tag"></i> Ruby</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/symbol-and-string/" rel="next" title="Day04  Symbol (符號)和 String(字串) 的差別">
+                  <i class="fa fa-chevron-left"></i> Day04  Symbol (符號)和 String(字串) 的差別
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/10/class-and-module/" rel="prev" title="Day06  Class(類別) 和 Ｍodule(模組) 的不同">
+                  Day06  Class(類別) 和 Ｍodule(模組) 的不同 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Method"><span class="nav-number">1.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Method的一些觀念："><span class="nav-number">1.1.</span> <span class="nav-text">Method的一些觀念：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Block"><span class="nav-number">2.</span> <span class="nav-text">Block</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Block的一些觀念："><span class="nav-number">2.1.</span> <span class="nav-text">Block的一些觀念：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Proc"><span class="nav-number">2.2.</span> <span class="nav-text">Proc</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="Chris Chiu"
+    src="/uploads/avatar.png">
+  <p class="site-author-name" itemprop="name">Chris Chiu</p>
+  <div class="site-description" itemprop="description">Fake it till you make it.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hungyichiu" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;hungyichiu" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hungyichiu@gmail.com" title="E-Mail &amp;rarr; mailto:hungyichiu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/hungyi.chiu.1" title="FB Page &amp;rarr; https:&#x2F;&#x2F;www.facebook.com&#x2F;hungyi.chiu.1" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chris Chiu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-hungyichiu-github-io.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://chrischiu.site/2019/10/method-and-block/",
+            identifier: "2019/10/method-and-block/",
+            title: "Day05   稍微介紹一下：Method 和 Block"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-hungyichiu-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+</script>
+
+</body>
+</html>

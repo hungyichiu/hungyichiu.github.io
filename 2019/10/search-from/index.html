@@ -52,17 +52,18 @@
   };
 </script>
 
-  <meta name="description" content="邱宏毅Ruby on Rails 工程師 國立中興大學企業管理學系畢業個性：內向，樂於助人，喜歡學習新的東西。 使用Rails框架開發協作專案：專案連結：https:&#x2F;&#x2F;jogether.site專案 GitHub: https:&#x2F;&#x2F;github.com&#x2F;hungyichiu&#x2F;jogether 使用Hexo 架設個人部落格Blog：https:&#x2F;&#x2F;chrischiu.site&#x2F; 前後端技術：Rub">
-<meta property="og:type" content="website">
-<meta property="og:title" content="About Ｍe">
-<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;about&#x2F;index.html">
+  <meta name="description" content="最近做專案，正好做到 搜尋的功能，今天就稍微紀錄一下囉！ 對先前的form 還有印象嗎？讓我們來快速複習一下： 預備知識：  form_for ：配合Model所建立的表單(如：POST 或 EDIT) form_tag ：不須配合Model技能建立的表單(如：這次要做的搜尋功能)">
+<meta name="keywords" content="Ruby and Rails 的二三事,11th鐵人賽,Rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Day17  如何實作搜索表單">
+<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;2019&#x2F;10&#x2F;search-from&#x2F;index.html">
 <meta property="og:site_name" content="轉職之路，不由分說">
-<meta property="og:description" content="邱宏毅Ruby on Rails 工程師 國立中興大學企業管理學系畢業個性：內向，樂於助人，喜歡學習新的東西。 使用Rails框架開發協作專案：專案連結：https:&#x2F;&#x2F;jogether.site專案 GitHub: https:&#x2F;&#x2F;github.com&#x2F;hungyichiu&#x2F;jogether 使用Hexo 架設個人部落格Blog：https:&#x2F;&#x2F;chrischiu.site&#x2F; 前後端技術：Rub">
+<meta property="og:description" content="最近做專案，正好做到 搜尋的功能，今天就稍微紀錄一下囉！ 對先前的form 還有印象嗎？讓我們來快速複習一下： 預備知識：  form_for ：配合Model所建立的表單(如：POST 或 EDIT) form_tag ：不須配合Model技能建立的表單(如：這次要做的搜尋功能)">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-11-08T02:38:36.418Z">
+<meta property="og:updated_time" content="2019-10-30T09:02:22.915Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://chrischiu.site/about/">
+<link rel="canonical" href="https://chrischiu.site/2019/10/search-from/">
 
 
 <script id="page-configurations">
@@ -70,14 +71,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
-    isPage: true,
+    isPost: true,
+    isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>About Ｍe | 轉職之路，不由分說
-  </title>
+  <title>Day17  如何實作搜索表單 | 轉職之路，不由分說</title>
   
 
 
@@ -206,49 +206,136 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
   <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="zh-tw">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/10/search-from/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
       <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Day17  如何實作搜索表單
+        </h2>
 
-<h2 class="post-title" itemprop="name headline">About Ｍe
-</h2>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
 
-<div class="post-meta">
+              <time title="Created: 2019-10-30 17:01:22 / Modified: 17:02:22" itemprop="dateCreated datePublished" datetime="2019-10-30T17:01:22+08:00">2019-10-30</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/10/search-from/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/search-from/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 
-</div>
+        </div>
+      </header>
 
-</header>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          <p>邱宏毅<br>Ruby on Rails 工程師</p>
-<p>國立中興大學企業管理學系畢業<br>個性：內向，樂於助人，喜歡學習新的東西。</p>
-<p>使用Rails框架開發協作專案：<br>專案連結：<a href="https://jogether.site" target="_blank" rel="noopener">https://jogether.site</a><br>專案 GitHub: <a href="https://github.com/hungyichiu/jogether" target="_blank" rel="noopener">https://github.com/hungyichiu/jogether</a></p>
-<p>使用Hexo 架設個人部落格<br>Blog：<a href="https://chrischiu.site/">https://chrischiu.site/</a></p>
-<p>前後端技術：<br>Ruby on Rails / PostgreSQL<br>HTML / CSS / JavaScript / jQuery / Bootstrap / RWD<br>Git / GitHub / deploy Heroku </p>
+        <p>最近做專案，正好做到 搜尋的功能，<br>今天就稍微紀錄一下囉！</p>
+<p>對先前的form 還有印象嗎？讓我們來快速複習一下：</p>
+<p>預備知識：</p>
+<ul>
+<li>form_for ：配合Model所建立的表單(如：POST 或 EDIT)</li>
+<li>form_tag ：不須配合Model技能建立的表單(如：這次要做的搜尋功能)</li>
+</ul>
+<a id="more"></a>
 
-      </div>
-      
-      
-      
+<hr>
+<p>Step1. 建立搜尋表單。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/views/events/index.html.erb</span></span><br><span class="line">&lt;%= form_tag(events_path, <span class="symbol">:method</span> =&gt; <span class="string">"get"</span>) <span class="keyword">do</span> %&gt;</span><br><span class="line">&lt;%= text_field_tag <span class="symbol">:search</span> %&gt; </span><br><span class="line">&lt;%= submit_tag <span class="string">"Search"</span> ,<span class="symbol">:event_name</span> =&gt; <span class="literal">nil</span> ,<span class="class"><span class="keyword">class</span>: "<span class="title">but</span>-<span class="title">primary</span>"%&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>小叮嚀：events_path, :method =&gt; “get” 就是你搜尋結果要呈現的頁面，<pre><code>要依據你自己設定的routes去設定喔！</code></pre></li>
+</ul>
+<hr>
+<p>Step2. 將參數[:search]加入到 EventsController 裡。<br>前面在表單裡填入的關鍵字將會被包在params中傳進來。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># app/controllers/events_controller.rb</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EventsController</span> &lt; ApplicationController</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></span><br><span class="line">    @events = Event.all.search(params[<span class="symbol">:search</span>])</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>小技巧：如果想了解params[:search]是什麼，<pre><code>可以用 render 的方式來觀察喔！</code></pre><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span></span></span><br><span class="line">    <span class="comment">#<span class="doctag">@events</span> = Event.all.search(params[:search])</span></span><br><span class="line">    render <span class="symbol">html:</span> params[<span class="symbol">:search</span>]</span><br><span class="line">  <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p>Step3. 在Event Model中建立一個search的方法。<br>針對在搜索表單中輸入的關鍵字將以search方法進行處理。<br>如果有一個與關鍵字匹配的用戶名，結果將顯示在頁面上。<br>如果沒有部分匹配的用戶名，則所有用戶名將顯示為所有列表。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#app/models/event.rb</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">self</span>.<span class="title">search</span><span class="params">(search)</span></span> </span><br><span class="line">     <span class="keyword">if</span> search</span><br><span class="line">       where([<span class="string">'event_name LIKE ?'</span>, <span class="string">"%<span class="subst">#&#123;search&#125;</span>%"</span>]) <span class="comment">#</span></span><br><span class="line">     <span class="keyword">else</span></span><br><span class="line">       all </span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>嗯，大概就是這樣啦！鐵人賽我們明天見！！</p>
+<p>參考資料：<br><a href="https://medium.com/@yassimortensen/simple-search-form-in-rails-8483739e4042" target="_blank" rel="noopener">Simple Search Form in Rails</a><br><a href="https://medium.com/@zylberberg.jonathan/creating-a-search-form-in-rails-5-77fdef6be74d" target="_blank" rel="noopener">Creating A Search Form In Rails 5</a><br><a href="https://www.for-engineer.life/entry/rails-search-form/" target="_blank" rel="noopener">【rails入門】検索フォームを簡単に実装する方法</a></p>
+
     </div>
-    
 
     
     
     
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Ruby-and-Rails-%E7%9A%84%E4%BA%8C%E4%B8%89%E4%BA%8B/" rel="tag"><i class="fa fa-tag"></i> Ruby and Rails 的二三事</a>
+              <a href="/tags/11th%E9%90%B5%E4%BA%BA%E8%B3%BD/" rel="tag"><i class="fa fa-tag"></i> 11th鐵人賽</a>
+              <a href="/tags/Rails/" rel="tag"><i class="fa fa-tag"></i> Rails</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/boolean-operator/" rel="next" title="Day16 && / and / | | / or">
+                  <i class="fa fa-chevron-left"></i> Day16 && / and / | | / or
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/10/spring-and-spring-stop/" rel="prev" title="Day18 鐵道裡的春天">
+                  Day18 鐵道裡的春天 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
 
 
@@ -424,9 +511,9 @@
       DISQUS.reset({
         reload: true,
         config: {page: {
-            url: "https://chrischiu.site/about/index.html",
-            identifier: "about/index.html",
-            title: "About Ｍe"
+            url: "https://chrischiu.site/2019/10/search-from/",
+            identifier: "2019/10/search-from/",
+            title: "Day17  如何實作搜索表單"
           }
         }
       });
