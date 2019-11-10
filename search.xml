@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>用 RVM 切換 Rails 版本</title>
+      <link href="/2019/11/rvm-switch-rails-version/"/>
+      <url>/2019/11/rvm-switch-rails-version/</url>
+      
+        <content type="html"><![CDATA[<p>為了回顧一下做專案的手感，想說來玩一下rails 6.0.0，好了。<br>結果做到一半發現…我建立的專案版本竟然是rails 5.2.3!?</p><p>花了段時間喚醒之前的記憶，印象中之前的確是升級過了，但是當下為了製作專案，<br>我把rails 6.0.0 直接解除安裝，重新安裝回 5.2.3  …</p><p>原來如此啊!!(真是個笨蛋啊…)</p><p>花了點時間，總算是找到解決方案了：</p><a id="more"></a><ul><li>首先，確認自己所使用的 ruby 版本<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v</span><br><span class="line">=&gt; ruby 2.6.3p62 (2019-04-16 revision 67580) [x86_64-darwin18]</span><br></pre></td></tr></table></figure>或是設定本機使用的預設版本 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm --default use 2.6.3</span><br></pre></td></tr></table></figure></li></ul><p>Q.為什麼需要設成deafault?<br>A.因為接下來我們要建立的 gemset 是綁定在特定 ruby 版本底下的。</p><hr><ul><li><p>建立gemset</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ rvm 2.6.3</span><br><span class="line">$ gem install rails -v 6.0.0</span><br><span class="line"></span><br><span class="line">$ rvm gemset create r600 r523</span><br><span class="line">Gemset &apos;r600&apos; created.</span><br><span class="line">Gemset &apos;r523&apos; created.</span><br><span class="line"></span><br><span class="line">$ rvm 2.6.3@r600</span><br><span class="line">$ gem install rails -v 6.0.0</span><br><span class="line"></span><br><span class="line">$ rvm 2.6.3@r523</span><br><span class="line">$ gem install rails -v 5.2.3</span><br></pre></td></tr></table></figure></li><li><p>設定完成之後，用法也很簡單：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ rvm 2.6.3@r523 ; rails --version</span><br><span class="line"></span><br><span class="line">Rails 5.2.3</span><br><span class="line"></span><br><span class="line">$ rvm 2.6.3@r600 ; rails --version</span><br><span class="line"></span><br><span class="line">Rails 6.0.0</span><br><span class="line"></span><br><span class="line">$ rvm use 2.6.3@r600 --default</span><br></pre></td></tr></table></figure></li></ul><p>好啦，繼續練手感去…</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Note </tag>
+            
+            <tag> RVM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>從 Ruby 看 JS 的 事件監聽機制</title>
       <link href="/2019/10/event-listener/"/>
       <url>/2019/10/event-listener/</url>

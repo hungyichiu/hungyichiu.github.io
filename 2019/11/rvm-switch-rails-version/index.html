@@ -52,16 +52,18 @@
   };
 </script>
 
-  <meta name="description" content="Fake it till you make it.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="轉職之路，不由分說">
-<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;archives&#x2F;2019&#x2F;10&#x2F;page&#x2F;2&#x2F;index.html">
+  <meta name="description" content="為了回顧一下做專案的手感，想說來玩一下rails 6.0.0，好了。結果做到一半發現…我建立的專案版本竟然是rails 5.2.3!? 花了段時間喚醒之前的記憶，印象中之前的確是升級過了，但是當下為了製作專案，我把rails 6.0.0 直接解除安裝，重新安裝回 5.2.3  … 原來如此啊!!(真是個笨蛋啊…) 花了點時間，總算是找到解決方案了：">
+<meta name="keywords" content="Note,RVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 RVM 切換 Rails 版本">
+<meta property="og:url" content="https:&#x2F;&#x2F;chrischiu.site&#x2F;2019&#x2F;11&#x2F;rvm-switch-rails-version&#x2F;index.html">
 <meta property="og:site_name" content="轉職之路，不由分說">
-<meta property="og:description" content="Fake it till you make it.">
+<meta property="og:description" content="為了回顧一下做專案的手感，想說來玩一下rails 6.0.0，好了。結果做到一半發現…我建立的專案版本竟然是rails 5.2.3!? 花了段時間喚醒之前的記憶，印象中之前的確是升級過了，但是當下為了製作專案，我把rails 6.0.0 直接解除安裝，重新安裝回 5.2.3  … 原來如此啊!!(真是個笨蛋啊…) 花了點時間，總算是找到解決方案了：">
 <meta property="og:locale" content="zh-tw">
+<meta property="og:updated_time" content="2019-11-10T08:20:30.738Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://chrischiu.site/archives/2019/10/page/2/">
+<link rel="canonical" href="https://chrischiu.site/2019/11/rvm-switch-rails-version/">
 
 
 <script id="page-configurations">
@@ -69,13 +71,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>Archive | 轉職之路，不由分說</title>
+  <title>用 RVM 切換 Rails 版本 | 轉職之路，不由分說</title>
   
 
 
@@ -208,236 +210,134 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-tw">
+    <link itemprop="mainEntityOfPage" href="https://chrischiu.site/2019/11/rvm-switch-rails-version/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/uploads/avatar.png">
+      <meta itemprop="name" content="Chris Chiu">
+      <meta itemprop="description" content="Fake it till you make it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="轉職之路，不由分說">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          用 RVM 切換 Rails 版本
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-11-10 15:56:07 / Modified: 16:20:30" itemprop="dateCreated datePublished" datetime="2019-11-10T15:56:07+08:00">2019-11-10</time>
+            </span>
+
+          
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 21 posts in total. Keep on posting.</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2019/11/rvm-switch-rails-version/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/rvm-switch-rails-version/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h2 class="collection-header">2019</h2>
-    </div>
+        <p>為了回顧一下做專案的手感，想說來玩一下rails 6.0.0，好了。<br>結果做到一半發現…我建立的專案版本竟然是rails 5.2.3!?</p>
+<p>花了段時間喚醒之前的記憶，印象中之前的確是升級過了，但是當下為了製作專案，<br>我把rails 6.0.0 直接解除安裝，重新安裝回 5.2.3  …</p>
+<p>原來如此啊!!(真是個笨蛋啊…)</p>
+<p>花了點時間，總算是找到解決方案了：</p>
+<a id="more"></a>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<ul>
+<li>首先，確認自己所使用的 ruby 版本<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ruby -v</span><br><span class="line">=&gt; ruby 2.6.3p62 (2019-04-16 revision 67580) [x86_64-darwin18]</span><br></pre></td></tr></table></figure>
+或是設定本機使用的預設版本 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rvm --default use 2.6.3</span><br></pre></td></tr></table></figure>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:40:11+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
+</li>
+</ul>
+<p>Q.為什麼需要設成deafault?<br>A.因為接下來我們要建立的 gemset 是綁定在特定 ruby 版本底下的。</p>
+<hr>
+<ul>
+<li><p>建立gemset</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ rvm 2.6.3</span><br><span class="line">$ gem install rails -v 6.0.0</span><br><span class="line"></span><br><span class="line">$ rvm gemset create r600 r523</span><br><span class="line">Gemset &apos;r600&apos; created.</span><br><span class="line">Gemset &apos;r523&apos; created.</span><br><span class="line"></span><br><span class="line">$ rvm 2.6.3@r600</span><br><span class="line">$ gem install rails -v 6.0.0</span><br><span class="line"></span><br><span class="line">$ rvm 2.6.3@r523</span><br><span class="line">$ gem install rails -v 5.2.3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>設定完成之後，用法也很簡單：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ rvm 2.6.3@r523 ; rails --version</span><br><span class="line"></span><br><span class="line">Rails 5.2.3</span><br><span class="line"></span><br><span class="line">$ rvm 2.6.3@r600 ; rails --version</span><br><span class="line"></span><br><span class="line">Rails 6.0.0</span><br><span class="line"></span><br><span class="line">$ rvm use 2.6.3@r600 --default</span><br></pre></td></tr></table></figure>
 
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/case-when/" itemprop="url">
-            <span itemprop="name">Day10 其實我不懂Case...When</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:37:26+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/rest-and-restful/" itemprop="url">
-            <span itemprop="name">Day09 REST 和 RESTful</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:35:15+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/rails-routes-mvc/" itemprop="url">
-            <span itemprop="name">Day08 Rails (Routes 和 MVC)</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:31:29+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/self-in-ruby/" itemprop="url">
-            <span itemprop="name">Day07  Ruby   中的 self 到底是？</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:28:36+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/class-and-module/" itemprop="url">
-            <span itemprop="name">Day06  Class(類別) 和 Ｍodule(模組) 的不同</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:23:48+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/method-and-block/" itemprop="url">
-            <span itemprop="name">Day05   稍微介紹一下：Method 和 Block</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:17:24+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/symbol-and-string/" itemprop="url">
-            <span itemprop="name">Day04  Symbol (符號)和 String(字串) 的差別</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:15:23+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/array-and-hash/" itemprop="url">
-            <span itemprop="name">Day03   Array and Hash</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T16:09:55+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/flowcontrol-loop-iteration/" itemprop="url">
-            <span itemprop="name">Day02  流程控制、迴圈與迭代</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-30T14:07:53+08:00"
-              content="2019-10-30">
-          10-30
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2019/10/variables-and-constants/" itemprop="url">
-            <span itemprop="name">Day01 變數與常數</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
+</li>
+</ul>
+<p>好啦，繼續練手感去…</p>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Note/" rel="tag"><i class="fa fa-tag"></i> Note</a>
+              <a href="/tags/RVM/" rel="tag"><i class="fa fa-tag"></i> RVM</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/event-listener/" rel="next" title="從 Ruby 看 JS 的 事件監聽機制">
+                  <i class="fa fa-chevron-left"></i> 從 Ruby 看 JS 的 事件監聽機制
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2019/10/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/archives/2019/10/">1</a><span class="page-number current">2</span>
-  </nav>
-
 
 
           </div>
           
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
 
         </div>
           
@@ -594,6 +494,27 @@
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://chrischiu.site/2019/11/rvm-switch-rails-version/",
+            identifier: "2019/11/rvm-switch-rails-version/",
+            title: "用 RVM 切換 Rails 版本"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-hungyichiu-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
 </script>
 
 </body>
